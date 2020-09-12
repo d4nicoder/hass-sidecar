@@ -1,4 +1,5 @@
 import API from "../API"
+import MQTT from '../mqtt'
 
 type ICallback = () => void
 abstract class Automation {
@@ -6,9 +7,11 @@ abstract class Automation {
   private _timeouts: NodeJS.Timeout[] = []
   private _intervals: NodeJS.Timeout[] = []
   protected _api: API
+  protected _mqtt: MQTT
 
   constructor () {
     this._api = API.getInstance()
+    this._mqtt = MQTT.getInstance()
   }
   
   public begin () {

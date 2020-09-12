@@ -1,10 +1,15 @@
 import websocketConnection from "./websocketConnection"
 import { IState } from "./interfaces/IState"
-import Test from './automations/test'
 import moment from 'moment'
+import fs from 'fs';
+import path from 'path';
+import { Automation } from "./interfaces/Automation";
+
+import MQTT from './mqtt'
 
 class API {
 
+  private _automations: Map<string, Automation> = new Map()
   private _connection: websocketConnection
   private _states: Map<string, IState> = new Map()
   private _nextSunset: Date = new Date()
@@ -23,18 +28,19 @@ class API {
       this._syncStates()
         .then(() => {
           console.log('States synced')
-          try {
-            const t = new Test()
-            t.begin()
-          } catch (e) {
-            console.error(e)
-          }
+          this._bootstrap()
         })
         .catch((error) => {
           console.error(error)
         })
       this._onStateChange()
 
+    })
+
+    const mqtt = MQTT.getInstance()
+
+    mqtt.subscribe('home/banoPequeno/status', {qos: 0}, (topic, payload) => {
+      console.log(`${topic} - ${payload}`)
     })
 
   }
@@ -113,6 +119,43 @@ class API {
       .catch((error) => {
         console.error(error)
       })
+  }
+
+  private async _bootstrap (): Promise<void> {
+    const automationsDir: string = path.resolve(path.join(__dirname, 'automations'))
+    const files = await fs.promises.readdir(automationsDir)
+    for (const file of files) {
+      if (/\.ts$/.test(file)) {
+        try {
+          const c = require(path.join(automationsDir, file))
+          this._automations.set(file, new c())
+        } catch (e) {
+          console.error(e)
+        }
+      }
+    }
+
+    // Watch for changes
+    fs.watch(automationsDir, (ev, filename) => {
+      if (ev === 'change') {
+        console.log(`${filename} changed`)
+        if (this._automations.has(filename)) {
+          const c = this._automations.get(filename)
+          if (c) {
+            c.destroy()
+            delete require.cache[require.resolve(path.join(automationsDir, filename))]
+
+            // reload
+            try {
+              const newC = require(path.join(automationsDir, filename))
+              this._automations.set(filename, new newC())
+            } catch (e) {
+              console.error(e)
+            }
+          }
+        }
+      }
+    })
   }
 }
 

@@ -4,6 +4,7 @@
   ],
   "ext": "ts",
   "ignore": [
+    "src/automations",
     "node_modules",
     "*.spect.ts"
   ],
