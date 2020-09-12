@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
-import websocketConnection from './websocketConnection'
+import API from './API'
 
 dotenv.config()
 
@@ -16,7 +16,11 @@ const init = async () => {
 
   const host: string = process.env.HA_HOST || ''
   const token: string = process.env.HA_TOKEN || ''
-  const connection = new websocketConnection(host, token)
+  try {
+    API.getInstance()
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 init()
