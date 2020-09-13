@@ -1,9 +1,14 @@
 import mqtt from 'mqtt'
 
-type ISubscriptionCallback = (topic: string, payload: any) => void
+export type ISubscriptionCallback = (topic: string, payload: any) => void
 interface ISubscription {
   id: number
   callback: ISubscriptionCallback
+}
+
+interface INewSubscription {
+  topic: string
+  id: number
 }
 
 class MQTT {
@@ -50,37 +55,56 @@ class MQTT {
     return MQTT.instance
   }
 
-  public subscribe(topic: string, options: mqtt.IClientSubscribeOptions, callback: ISubscriptionCallback) {
+  public subscribe(topic: string, options: mqtt.IClientSubscribeOptions, callback: ISubscriptionCallback): INewSubscription {
     if (/[#+\$]/.test(topic)) {
-      console.error(new Error('Not allowed wildcards on mqtt subscriptions'))
-      return
+      throw new Error('Not allowed wildcards on mqtt subscriptions')
     }
     this.client.subscribe(topic, options)
 
+    let id = 0
     if (this.subscriptions.has(topic)) {
       let subs = this.subscriptions.get(topic)
       if (subs) {
+        id = subs.length
         subs.push({
           callback,
-          id: subs.length,
+          id,
         })
       } else {
         subs = [
           {
             callback,
-            id: 0
+            id
           }
         ]
       }
       this.subscriptions.set(topic, subs)
     } else {
-      this.subscriptions.set(topic, [{callback, id: 0}])
+      this.subscriptions.set(topic, [{callback, id}])
     }
+    return {topic, id}
   }
 
   public publish(topic: string, payload: string, options?: mqtt.IClientPublishOptions) {
     options = options || {}
     this.client.publish(topic, payload, options)
+  }
+
+  public unsubscribe(topic: string, id: number) {
+    if (!this.subscriptions.has(topic)) {
+      return
+    }
+    let subs = this.subscriptions.get(topic)
+    if (!subs) {
+      return
+    }
+
+    subs = subs.filter(s => s.id !== id)
+    if (subs.length === 0) {
+      this.subscriptions.delete(topic)
+      return
+    }
+    this.subscriptions.set(topic, subs)
   }
 }
 
