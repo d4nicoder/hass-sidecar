@@ -1,5 +1,5 @@
 import websocketConnection from "./websocketConnection"
-import { IState } from "./interfaces/IState"
+import { IState, IStateCallback } from "./interfaces/IState"
 import moment from 'moment'
 import fs from 'fs';
 import path from 'path';
@@ -12,6 +12,7 @@ class API {
   private _automations: Map<string, Automation> = new Map()
   private _connection: websocketConnection
   private _states: Map<string, IState> = new Map()
+  private _stateListeners: Map<string, {id: number, callback:IStateCallback}[]> = new Map()
   private _nextSunset: Date = new Date()
   private _nextSunrise: Date = new Date()
 
@@ -38,11 +39,6 @@ class API {
     })
 
     const mqtt = MQTT.getInstance()
-
-    mqtt.subscribe('home/banoPequeno/status', {qos: 0}, (topic, payload) => {
-      console.log(`${topic} - ${payload}`)
-    })
-
   }
 
   public static getInstance(): API {
@@ -51,6 +47,41 @@ class API {
     }
 
     return API._instance
+  }
+
+  public onState(entityId: string, callback: IStateCallback) {
+    const id = Math.floor(Math.random() * 10000) + new Date().getTime()
+    const listenerInfo = {
+      id,
+      entityId
+    }
+    if (!this._stateListeners.has(entityId)) {
+      this._stateListeners.set(entityId, [{id, callback}])
+    } else {
+      const listeners = this._stateListeners.get(entityId)
+      if (listeners) {
+        listeners.push({
+          id,
+          callback
+        })
+        this._stateListeners.set(entityId, listeners)
+      }
+    }
+    return listenerInfo
+  }
+
+  public clearOnState(entityId: string, id: number) {
+    if (this._stateListeners.has(entityId)) {
+      let listeners = this._stateListeners.get(entityId)
+      if (listeners) {
+        listeners = listeners.filter(l => l.id !== id)
+        if (listeners.length === 0) {
+          this._stateListeners.delete(entityId)
+          return
+        }
+        this._stateListeners.set(entityId, listeners)
+      }
+    }
   }
 
   /**
@@ -112,6 +143,19 @@ class API {
       const newState: IState = message.data.new_state
       console.log(`\x1b[33m${moment().format('YYYY-MM-DD HH:mm:ss.SSS')}\x1b[0m - New state of ${newState.attributes.friendly_name} (${newState.entity_id}): ${newState.state}`)
       this._states.set(newState.entity_id, newState)
+
+      if (this._stateListeners.has(newState.entity_id)) {
+        const listeners = this._stateListeners.get(newState.entity_id)
+        if (listeners) {
+          for (const listener of listeners) {
+            try {
+              listener.callback(newState.entity_id, newState, message.data.old_state)
+            } catch (e) {
+              console.error(e)
+            }
+          }
+        }
+      }
     })
       .then((data) => {
         console.log('Subscribed')
@@ -137,22 +181,22 @@ class API {
 
     // Watch for changes
     fs.watch(automationsDir, (ev, filename) => {
-      if (ev === 'change') {
-        console.log(`${filename} changed`)
-        if (this._automations.has(filename)) {
-          const c = this._automations.get(filename)
-          if (c) {
-            c.destroy()
-            delete require.cache[require.resolve(path.join(automationsDir, filename))]
+      console.log(`${ev} - ${filename}`)
+      delete require.cache[require.resolve(path.join(automationsDir, filename))]
 
-            // reload
-            try {
-              const newC = require(path.join(automationsDir, filename))
-              this._automations.set(filename, new newC())
-            } catch (e) {
-              console.error(e)
-            }
-          }
+      if (this._automations.has(filename)) {
+        const c = this._automations.get(filename)
+        if (c) {
+          c.destroy()
+          this._automations.delete(filename)
+        }
+      }
+      if (ev === 'change') {
+        try {
+          const newC = require(path.join(automationsDir, filename))
+          this._automations.set(filename, new newC())
+        } catch (e) {
+          console.error(e)
         }
       }
     })

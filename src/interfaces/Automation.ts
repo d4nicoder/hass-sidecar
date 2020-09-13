@@ -2,6 +2,7 @@ import API from "../API"
 import mqtt from 'mqtt'
 import MQTT from '../mqtt'
 import { ISubscriptionCallback } from '../mqtt';
+import { IStateCallback } from './IState';
 
 type ICallback = () => void
 abstract class Automation {
@@ -9,6 +10,8 @@ abstract class Automation {
   private _timeouts: NodeJS.Timeout[] = []
   private _intervals: NodeJS.Timeout[] = []
   private _mqttSubscriptions: Map<string, number> = new Map()
+  private _stateSubscriptions: {id: number, entityId: string}[] = []
+
   protected _api: API
   protected _mqtt: MQTT
 
@@ -33,6 +36,11 @@ abstract class Automation {
     } catch (e) {
       console.error(e)
     }
+  }
+
+  onStateChange (entityId: string, callback: IStateCallback) {
+    const listener = this._api.onState(entityId, callback)
+    this._stateSubscriptions.push(listener)
   }
 
   setTimeout (callback: ICallback, milliseconds: number) {
@@ -76,6 +84,15 @@ abstract class Automation {
       this._mqtt.unsubscribe(value[0], value[1])
     })
     this._mqttSubscriptions = new Map()
+
+    // Unsubscribe state changes
+    for (const sub of this._stateSubscriptions) {
+      try {
+        this._api.clearOnState(sub.entityId, sub.id)
+      } catch (e) {
+        console.error(e)
+      }
+    }
     console.log('Destroyed')
   }
 }

@@ -10,3 +10,5 @@ export interface IState {
     user_id: string
   }
 }
+
+export type IStateCallback = (entityId: string, newState: IState, oldState: IState) => void
