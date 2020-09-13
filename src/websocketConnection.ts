@@ -2,14 +2,17 @@ import ws from 'ws'
 import { EventEmitter } from 'events'
 import { IState } from './interfaces/IState'
 
+type ICloseCallback = () => void
+
 export default class {
   private _uri: string
   private _token: string
-  private _conn: ws
+  private _conn!: ws
   private _listeners: EventEmitter
   private _id: number = 0
   private _promises: Map<number, { resolve: (message: any) => void, reject: (error: Error) => void }>
   private _eventSubscribers: Map<number, (message: any) => void>
+  private _onCloseEvents: ICloseCallback[] = []
 
   public constructor(host: string, token: string) {
     this._uri = `ws://${host}/api/websocket`
@@ -19,9 +22,13 @@ export default class {
     this._promises = new Map()
     this._eventSubscribers = new Map()
 
+    this._createConnection()
+  }
+  
+  private _createConnection() {
     // Lets connect throw websockets
     this._conn = new ws(this._uri)
-
+  
     this._conn.on('error', (error: Error) => {
       try {
         this._conn.close()
@@ -30,7 +37,7 @@ export default class {
       }
       console.error(error)
     })
-
+  
     this._conn.on('close', (code) => {
       console.error('Connection with Homeassistant closed')
       try {
@@ -38,13 +45,24 @@ export default class {
       } catch (e) {
         console.error(e)
       }
-      process.exit(code)
-    })
+      for (const callback of this._onCloseEvents) {
+        try {
+          callback()
+        } catch (e) {
+          console.error(e)
+        }
+      }
 
+      setTimeout(() => {
+        console.log('Reconnecting')
+        this._createConnection()
+      }, 5000)
+    })
+  
     this._conn.on('open', () => {
       this._listeners.emit('open')
     })
-
+  
     this._conn.once('open', () => {
       // Aunthenticate
       this._conn.send(JSON.stringify({
@@ -52,8 +70,9 @@ export default class {
         access_token: this._token
       }))
     })
-
+  
     this._conn.on('message', this._processMessage.bind(this))
+
   }
 
 
@@ -109,6 +128,10 @@ export default class {
       this._conn.send(JSON.stringify(message))
       this._promises.set(message.id, { resolve, reject })
     })
+  }
+
+  public onClose(callback: ICloseCallback) {
+    this._onCloseEvents.push(callback)
   }
 
   private _processMessage(data: string) {

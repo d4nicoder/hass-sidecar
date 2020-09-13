@@ -35,7 +35,10 @@ class API {
           console.error(error)
         })
       this._onStateChange()
+    })
 
+    this._connection.onClose(() => {
+      this._unload()
     })
 
     const mqtt = MQTT.getInstance()
@@ -199,6 +202,18 @@ class API {
           console.error(e)
         }
       }
+    })
+  }
+
+  private _unload() {
+    Array.from(this._automations).forEach((automation) => {
+      console.log(`Unloading ${automation[0]}`)
+      try {
+        automation[1].destroy()
+      } catch (e) {
+        console.error(e)
+      }
+      this._automations.delete(automation[0])
     })
   }
 }
