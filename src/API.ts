@@ -150,6 +150,9 @@ class API {
   private _onStateChange() {
     this._connection.subscribeEvent('state_changed', (message) => {
       const newState: IState = message.data.new_state
+      if (!newState) {
+        return
+      }
       console.log(`\x1b[33m${moment().format('YYYY-MM-DD HH:mm:ss.SSS')}\x1b[0m - New state of ${newState.attributes.friendly_name} (${newState.entity_id}): ${newState.state}`)
       this._states.set(newState.entity_id, newState)
 
