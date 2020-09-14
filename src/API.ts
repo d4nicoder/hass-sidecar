@@ -101,7 +101,13 @@ class API {
 
   public callService(domain: string, service: string, entityId: string, data: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._connection.callService(domain, service, {entity_id: entityId, data})
+      let options: any = {
+        entity_id: entityId
+      }
+      if (data && data !== {}) {
+        options = {...options, ...data}
+      }
+      this._connection.callService(domain, service, options)
         .then((returnedData) => {
           if (resolve) {
             resolve(returnedData)
@@ -152,7 +158,7 @@ class API {
         if (listeners) {
           for (const listener of listeners) {
             try {
-              listener.callback(newState.entity_id, newState, message.data.old_state)
+              listener.callback(newState, message.data.old_state)
             } catch (e) {
               console.error(e)
             }
