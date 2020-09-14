@@ -12,8 +12,8 @@ abstract class Automation {
   private _mqttSubscriptions: Map<string, number> = new Map()
   private _stateSubscriptions: {id: number, entityId: string}[] = []
 
-  protected _api: API
-  protected _mqtt: MQTT
+  private _api: API
+  private _mqtt: MQTT
 
   constructor () {
     this._api = API.getInstance()
@@ -51,6 +51,14 @@ abstract class Automation {
       }
     }
     this.onStateChange(entityId, newCallback)
+  }
+
+  async getState (entityId: string) {
+    return this._api.getState(entityId)
+  }
+
+  async callService (domain: string, service: string, entityId: string, data: any) {
+    return this._api.callService(domain, service, entityId, data)
   }
 
   setTimeout (callback: ICallback, milliseconds: number): NodeJS.Timeout {
