@@ -11,4 +11,4 @@ export interface IState {
   }
 }
 
-export type IStateCallback = (entityId: string, newState: IState, oldState: IState) => void
+export type IStateCallback = (newState: IState, oldState: IState) => void
