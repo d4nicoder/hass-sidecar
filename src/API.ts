@@ -107,6 +107,11 @@ class API {
       if (data && data !== {}) {
         options = {...options, ...data}
       }
+
+      if (!entityId) {
+        delete options.entity_id
+      }
+
       this._connection.callService(domain, service, options)
         .then((returnedData) => {
           if (resolve) {

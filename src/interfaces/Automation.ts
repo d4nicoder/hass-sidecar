@@ -18,9 +18,6 @@ abstract class Automation {
   constructor () {
     this._api = API.getInstance()
     this._mqtt = MQTT.getInstance()
-  }
-
-  public begin () {
     this._timeouts = []
     this._intervals = []
   }
@@ -56,9 +53,10 @@ abstract class Automation {
     this.onStateChange(entityId, newCallback)
   }
 
-  setTimeout (callback: ICallback, milliseconds: number) {
+  setTimeout (callback: ICallback, milliseconds: number): NodeJS.Timeout {
     const id = setTimeout(callback, milliseconds)
     this._timeouts.push(id)
+    return id
   }
 
   clearTimeout (id: NodeJS.Timeout) {
@@ -67,9 +65,10 @@ abstract class Automation {
     this._timeouts.splice(idx, 1)
   }
 
-  setInterval (callback: ICallback, milliseconds: number) {
+  setInterval (callback: ICallback, milliseconds: number): NodeJS.Timeout {
     const id = setInterval(callback, milliseconds)
     this._intervals.push(id)
+    return id
   }
 
   clearInterval (id: NodeJS.Timeout) {
