@@ -43,6 +43,19 @@ abstract class Automation {
     this._stateSubscriptions.push(listener)
   }
 
+  onConcretState (entityId: string, state: string, callback: IStateCallback) {
+    const newCallback: IStateCallback = (newState, oldState) => {
+      if (newState.state === state) {
+        try {
+          callback(newState, oldState)
+        } catch (e) {
+          console.error(e)
+        }
+      }
+    }
+    this.onStateChange(entityId, newCallback)
+  }
+
   setTimeout (callback: ICallback, milliseconds: number) {
     const id = setTimeout(callback, milliseconds)
     this._timeouts.push(id)

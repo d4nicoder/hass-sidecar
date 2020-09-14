@@ -190,6 +190,10 @@ class API {
 
     // Watch for changes
     fs.watch(automationsDir, (ev, filename) => {
+      if (!/\.ts$/.test(filename)) {
+        return
+      }
+
       console.log(`${ev} - ${filename}`)
       delete require.cache[require.resolve(path.join(automationsDir, filename))]
 
