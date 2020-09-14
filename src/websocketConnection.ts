@@ -24,11 +24,11 @@ export default class {
 
     this._createConnection()
   }
-  
+
   private _createConnection() {
     // Lets connect throw websockets
     this._conn = new ws(this._uri)
-  
+
     this._conn.on('error', (error: Error) => {
       try {
         this._conn.close()
@@ -37,7 +37,7 @@ export default class {
       }
       console.error(error)
     })
-  
+
     this._conn.on('close', (code) => {
       console.error('Connection with Homeassistant closed')
       try {
@@ -58,11 +58,11 @@ export default class {
         this._createConnection()
       }, 5000)
     })
-  
+
     this._conn.on('open', () => {
       this._listeners.emit('open')
     })
-  
+
     this._conn.once('open', () => {
       // Aunthenticate
       this._conn.send(JSON.stringify({
@@ -70,7 +70,7 @@ export default class {
         access_token: this._token
       }))
     })
-  
+
     this._conn.on('message', this._processMessage.bind(this))
 
   }
