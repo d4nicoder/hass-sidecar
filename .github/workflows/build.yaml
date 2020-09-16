@@ -13,7 +13,7 @@ jobs:
         name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=hass-sidecar
+          DOCKER_IMAGE=hub.soleydani.es/hass-sidecar
           VERSION=noop
           if [ "${{ github.event_name }}" = "schedule" ]; then
             VERSION=nightly
