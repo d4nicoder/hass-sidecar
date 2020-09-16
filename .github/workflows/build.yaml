@@ -14,7 +14,7 @@ jobs:
         name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=hub.soleydani.es/hass-sidecar
+          DOCKER_IMAGE=${{ secrets.REGISTRY }}/hass-sidecar
           VERSION=noop
           if [ "${{ github.event_name }}" = "schedule" ]; then
             VERSION=nightly
@@ -69,11 +69,11 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: set image -n hass --record deployment/hass-sidecar hass-sidecar=${{ steps.prep.outputs.tags }}
+          args: --insecure-skip-tls-verify set image -n hass --record deployment/hass-sidecar hass-sidecar=${{ steps.prep.outputs.tags }}
       - name: Verify deployment
         id: verify_deployment
         uses: steebchen/kubectl@master
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: '"rollout status deployment/hass-sidecar"'
+          args: '"--insecure-skip-tls-verify rollout status deployment/hass-sidecar"'
