@@ -3,7 +3,7 @@ import mqtt from 'mqtt'
 import MQTT from '../mqtt'
 import { ISubscriptionCallback } from '../mqtt';
 import { IStateCallback } from './IState';
-import logger from "./logger";
+import logger from "../lib/logger";
 
 type ICallback = () => void
 abstract class Automation {
