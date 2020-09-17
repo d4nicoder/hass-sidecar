@@ -3,6 +3,7 @@ import mqtt from 'mqtt'
 import MQTT from '../mqtt'
 import { ISubscriptionCallback } from '../mqtt';
 import { IStateCallback } from './IState';
+import logger from "./logger";
 
 type ICallback = () => void
 abstract class Automation {
@@ -12,14 +13,28 @@ abstract class Automation {
   private _mqttSubscriptions: Map<string, number> = new Map()
   private _stateSubscriptions: {id: number, entityId: string}[] = []
 
+  readonly title: string = ''
+  readonly description: string = ''
+
   private _api: API
   private _mqtt: MQTT
 
-  constructor () {
+  constructor (title?: string, description?: string) {
     this._api = API.getInstance()
     this._mqtt = MQTT.getInstance()
     this._timeouts = []
     this._intervals = []
+
+    if (title) {
+      this.title = title
+    }
+    if (description) {
+      this.description = description
+    }
+
+    if (title) {
+      logger(`Loaded "${this.title}": ${this.description}`)
+    }
   }
 
   mqttPublish (topic: string, payload: string, options?: mqtt.IClientPublishOptions) {
