@@ -161,6 +161,11 @@ class API {
       console.log(`\x1b[33m${moment().format('YYYY-MM-DD HH:mm:ss.SSS')}\x1b[0m - New state of ${newState.attributes.friendly_name} (${newState.entity_id}): ${newState.state}`)
       this._states.set(newState.entity_id, newState)
 
+      if (!message.data.old_state) {
+        // Force old_state exists
+        message.data.old_state = message.data.new_state
+      }
+
       if (this._stateListeners.has(newState.entity_id)) {
         const listeners = this._stateListeners.get(newState.entity_id)
         if (listeners) {
