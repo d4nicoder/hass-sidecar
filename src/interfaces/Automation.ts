@@ -3,7 +3,7 @@ import mqtt from 'mqtt'
 import MQTT from '../mqtt'
 import { ISubscriptionCallback } from '../mqtt';
 import { IStateCallback } from './IState';
-import logger from "../lib/logger";
+import Logger from "../lib/Logger";
 
 type ICallback = () => void
 abstract class Automation {
@@ -33,7 +33,7 @@ abstract class Automation {
     }
 
     if (title) {
-      logger(`Loaded "${this.title}": ${this.description}`)
+      Logger.info(`Loaded "${this.title}": ${this.description}`)
     }
   }
 
@@ -46,7 +46,7 @@ abstract class Automation {
       const sub = this._mqtt.subscribe(topic, options, callback)
       this._mqttSubscriptions.set(sub.topic, sub.id)
     } catch (e) {
-      console.error(e)
+      Logger.error(e)
     }
   }
 
@@ -61,7 +61,7 @@ abstract class Automation {
         try {
           callback(newState, oldState)
         } catch (e) {
-          console.error(e)
+          Logger.error(e)
         }
       }
     }
@@ -103,19 +103,19 @@ abstract class Automation {
   destroy () {
     // Destroy all timeouts
     for (let i = this._timeouts.length - 1; i >= 0; i--) {
-      console.log(`Destroying timeout ${this._timeouts[i]}`)
+      Logger.log(`Destroying timeout ${this._timeouts[i]}`)
       this.clearTimeout(this._timeouts[i])
     }
 
     // Destroy all intervals
     for (let i = this._intervals.length - 1; i >= 0; i--) {
-      console.log(`Destroying interval ${this._intervals[i]}`)
+      Logger.log(`Destroying interval ${this._intervals[i]}`)
       this.clearInterval(this._intervals[i])
     }
 
     // Unsubscribe mqtt
     Array.from(this._mqttSubscriptions).forEach((value) => {
-      console.log(`Unsubscribing from mqtt topic: ${value[0]} with id ${value[1]}`)
+      Logger.log(`Unsubscribing from mqtt topic: ${value[0]} with id ${value[1]}`)
       this._mqtt.unsubscribe(value[0], value[1])
     })
     this._mqttSubscriptions = new Map()
@@ -125,10 +125,10 @@ abstract class Automation {
       try {
         this._api.clearOnState(sub.entityId, sub.id)
       } catch (e) {
-        console.error(e)
+        Logger.error(e)
       }
     }
-    console.log('Destroyed')
+    Logger.log('Destroyed')
   }
 }
 

@@ -1,4 +1,5 @@
 import mqtt from 'mqtt'
+import Logger from './lib/Logger';
 
 export type ISubscriptionCallback = (topic: string, payload: any) => void
 interface ISubscription {
@@ -25,7 +26,7 @@ class MQTT {
     }
     this.client = mqtt.connect(uri, options)
     this.client.once('connect', () => {
-      console.log('Conexión con MQTT')
+      Logger.info('Conexión con MQTT')
     })
 
     this.client.on('message', this.handleMessage.bind(this))
@@ -39,7 +40,7 @@ class MQTT {
           try {
             s.callback(topic, message)
           } catch (e) {
-            console.error(e)
+            Logger.error(e)
           }
         }
       }

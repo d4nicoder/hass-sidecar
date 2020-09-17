@@ -1,6 +1,7 @@
 import ws from 'ws'
 import { EventEmitter } from 'events'
 import { IState } from './interfaces/IState'
+import Logger from './lib/Logger';
 
 type ICloseCallback = () => void
 
@@ -33,28 +34,28 @@ export default class {
       try {
         this._conn.close()
       } catch (e) {
-        console.error(e)
+        Logger.error(e)
       }
-      console.error(error)
+      Logger.error(error)
     })
 
     this._conn.on('close', (code) => {
-      console.error('Connection with Homeassistant closed')
+      Logger.error('Connection with Homeassistant closed')
       try {
         this._conn.close()
       } catch (e) {
-        console.error(e)
+        Logger.error(e)
       }
       for (const callback of this._onCloseEvents) {
         try {
           callback()
         } catch (e) {
-          console.error(e)
+          Logger.error(e)
         }
       }
 
       setTimeout(() => {
-        console.log('Reconnecting')
+        Logger.info('Reconnecting')
         this._createConnection()
       }, 5000)
     })
@@ -139,16 +140,16 @@ export default class {
     try {
       json = JSON.parse(data)
     } catch (e) {
-      console.error(e)
+      Logger.error(e)
       return
     }
 
     if (json.type) {
       if (json.type === 'auth_ok') {
-        console.log('Authentication successfully')
+        Logger.info('Authentication successfully')
         this._listeners.emit('ready')
       } else if (json.type === 'auth_invalid') {
-        console.error('Invalid authentication')
+        Logger.error('Invalid authentication')
         this._conn.close()
       } else if (json.type === 'auth_required') {
         return
@@ -165,13 +166,13 @@ export default class {
           try {
             resolve(json.result)
           } catch (e) {
-            console.error(e)
+            Logger.error(e)
           }
         } else {
           try {
             reject(json)
           } catch (e) {
-            console.error(e)
+            Logger.error(e)
           }
         }
       }
@@ -182,7 +183,7 @@ export default class {
         try {
           callback(json.event)
         } catch (e) {
-          console.error(e)
+          Logger.error(e)
         }
       }
     }

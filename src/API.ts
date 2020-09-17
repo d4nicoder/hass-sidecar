@@ -1,12 +1,12 @@
 import websocketConnection from "./websocketConnection"
 import { IState, IStateCallback } from "./interfaces/IState"
 import moment from 'moment'
-import fs from 'fs';
 import path from 'path';
 import chokidar from 'chokidar'
 import { Automation } from "./interfaces/Automation";
 
 import MQTT from './mqtt'
+import Logger from './lib/Logger';
 
 class API {
 
@@ -25,15 +25,15 @@ class API {
     this._connection = new websocketConnection(host, token)
 
     this._connection.addEventListener('ready', () => {
-      console.log('Conexión lista')
+      Logger.info('Connection ready')
 
       this._syncStates()
         .then(() => {
-          console.log('States synced')
+          Logger.info('States synced')
           this._bootstrap()
         })
         .catch((error) => {
-          console.error(error)
+          Logger.error(error)
         })
       this._onStateChange()
     })
@@ -120,7 +120,7 @@ class API {
           }
         })
         .catch(e => {
-          console.error(e)
+          Logger.error(e)
           if (reject) {
             reject(e)
           }
@@ -158,7 +158,7 @@ class API {
       if (!newState) {
         return
       }
-      console.log(`\x1b[33m${moment().format('YYYY-MM-DD HH:mm:ss.SSS')}\x1b[0m - New state of ${newState.attributes.friendly_name} (${newState.entity_id}): ${newState.state}`)
+      Logger.debug(`New state of ${newState.attributes.friendly_name} (${newState.entity_id}): ${newState.state}`)
       this._states.set(newState.entity_id, newState)
 
       if (!message.data.old_state) {
@@ -173,34 +173,19 @@ class API {
             try {
               listener.callback(newState, message.data.old_state)
             } catch (e) {
-              console.error(e)
+              Logger.error(e)
             }
           }
         }
       }
     })
-      .then((data) => {
-        console.log('Subscribed')
-      })
       .catch((error) => {
-        console.error(error)
+        Logger.error(error)
       })
   }
 
   private async _bootstrap (): Promise<void> {
     const automationsDir: string = path.resolve(path.join(__dirname, 'automations'))
-    // const files = await fs.promises.readdir(automationsDir)
-    // for (const file of files) {
-    //   if (/\.ts$/.test(file)) {
-    //     try {
-    //       const c = require(path.join(automationsDir, file))
-    //       this._automations.set(file, new c())
-    //     } catch (e) {
-    //       console.error(e)
-    //     }
-    //   }
-    // }
-
     // Watch for changes
     const watcher = chokidar.watch(`${automationsDir}/**/**`)
     watcher.on('change', (filename) => {
@@ -232,18 +217,18 @@ class API {
         const newC = require(path.join(filename))
         this._automations.set(filename, new newC())
       } catch (e) {
-        console.error(e)
+        Logger.error(e)
       }
     }
   }
 
   private _unload() {
     Array.from(this._automations).forEach((automation) => {
-      console.log(`Unloading ${automation[0]}`)
+      Logger.debug(`Unloading ${automation[0]}`)
       try {
         automation[1].destroy()
       } catch (e) {
-        console.error(e)
+        Logger.error(e)
       }
       this._automations.delete(automation[0])
     })

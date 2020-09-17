@@ -1,6 +1,6 @@
 {
   "name": "hass-sidecar",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
