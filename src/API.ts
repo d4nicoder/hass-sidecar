@@ -100,7 +100,7 @@ class API {
     return state
   }
 
-  public callService(domain: string, service: string, entityId: string, data: any): Promise<any> {
+  public callService(domain: string, service: string, entityId: string | null, data: any): Promise<any> {
     return new Promise((resolve, reject) => {
       let options: any = {
         entity_id: entityId
@@ -210,7 +210,7 @@ class API {
   }
 
   private _modifiedFile(ev: string, filename: string) {
-    if (!/\.ts$/.test(filename)) {
+    if (!/\.ts$/.test(filename) || /\/\.?lib\//.test(filename)) {
       return
     }
     delete require.cache[require.resolve(path.join(filename))]

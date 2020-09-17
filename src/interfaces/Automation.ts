@@ -57,7 +57,7 @@ abstract class Automation {
     return this._api.getState(entityId)
   }
 
-  async callService (domain: string, service: string, entityId: string, data: any) {
+  async callService (domain: string, service: string, entityId: string | null, data: any) {
     return this._api.callService(domain, service, entityId, data)
   }
 
