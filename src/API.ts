@@ -3,6 +3,7 @@ import { IState, IStateCallback } from "./interfaces/IState"
 import moment from 'moment'
 import fs from 'fs';
 import path from 'path';
+import chokidar from 'chokidar'
 import { Automation } from "./interfaces/Automation";
 
 import MQTT from './mqtt'
@@ -143,7 +144,6 @@ class API {
             })
 
             for (const state of states) {
-              console.log(`Syncing state of ${state.entity_id}`)
               this._states.set(state.entity_id, state)
             }
             resolve()
@@ -184,43 +184,52 @@ class API {
 
   private async _bootstrap (): Promise<void> {
     const automationsDir: string = path.resolve(path.join(__dirname, 'automations'))
-    const files = await fs.promises.readdir(automationsDir)
-    for (const file of files) {
-      if (/\.ts$/.test(file)) {
-        try {
-          const c = require(path.join(automationsDir, file))
-          this._automations.set(file, new c())
-        } catch (e) {
-          console.error(e)
-        }
-      }
-    }
+    // const files = await fs.promises.readdir(automationsDir)
+    // for (const file of files) {
+    //   if (/\.ts$/.test(file)) {
+    //     try {
+    //       const c = require(path.join(automationsDir, file))
+    //       this._automations.set(file, new c())
+    //     } catch (e) {
+    //       console.error(e)
+    //     }
+    //   }
+    // }
 
     // Watch for changes
-    fs.watch(automationsDir, (ev, filename) => {
-      if (!/\.ts$/.test(filename)) {
-        return
-      }
-
-      console.log(`${ev} - ${filename}`)
-      delete require.cache[require.resolve(path.join(automationsDir, filename))]
-
-      if (this._automations.has(filename)) {
-        const c = this._automations.get(filename)
-        if (c) {
-          c.destroy()
-          this._automations.delete(filename)
-        }
-      }
-      if (ev === 'change') {
-        try {
-          const newC = require(path.join(automationsDir, filename))
-          this._automations.set(filename, new newC())
-        } catch (e) {
-          console.error(e)
-        }
-      }
+    const watcher = chokidar.watch(`${automationsDir}/**/**`)
+    watcher.on('change', (filename) => {
+      this._modifiedFile('change', filename)
     })
+    watcher.on('add', (filename) => {
+      this._modifiedFile('add', filename)
+    })
+    watcher.on('unlink', (filename) => {
+      this._modifiedFile('remove', filename)
+    })
+  }
+
+  private _modifiedFile(ev: string, filename: string) {
+    if (!/\.ts$/.test(filename)) {
+      return
+    }
+    delete require.cache[require.resolve(path.join(filename))]
+
+    if (this._automations.has(filename)) {
+      const c = this._automations.get(filename)
+      if (c) {
+        c.destroy()
+        this._automations.delete(filename)
+      }
+    }
+    if (/(change|add)/.test(ev)) {
+      try {
+        const newC = require(path.join(filename))
+        this._automations.set(filename, new newC())
+      } catch (e) {
+        console.error(e)
+      }
+    }
   }
 
   private _unload() {

@@ -1,6 +1,6 @@
 {
   "name": "hass-sidecar",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
     "@types/mqtt": "^2.5.0",
     "@types/node": "^14.6.0",
     "@types/ws": "^7.2.6",
+    "chokidar": "^3.4.2",
     "dotenv": "^8.2.0",
     "moment": "^2.27.0",
     "mqtt": "^4.2.0",
