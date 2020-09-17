@@ -5,6 +5,13 @@ import { ISubscriptionCallback } from '../mqtt';
 import { IStateCallback } from './IState';
 import Logger from "../lib/Logger";
 
+
+type IQueue = {
+  id: string
+  date: Date
+  callback: () => Promise<void> | void
+}
+
 type ICallback = () => void
 abstract class Automation {
 
@@ -12,6 +19,7 @@ abstract class Automation {
   private _intervals: NodeJS.Timeout[] = []
   private _mqttSubscriptions: Map<string, number> = new Map()
   private _stateSubscriptions: {id: number, entityId: string}[] = []
+  private _queue: IQueue[] = []
 
   readonly title: string = ''
   readonly description: string = ''
@@ -35,6 +43,11 @@ abstract class Automation {
     if (title) {
       Logger.info(`Loaded "${this.title}": ${this.description}`)
     }
+
+    this.setInterval(() => {
+      this._checkQueue()
+        .catch(Logger.error)
+    }, 1000)
   }
 
   mqttPublish (topic: string, payload: string, options?: mqtt.IClientPublishOptions) {
@@ -66,6 +79,35 @@ abstract class Automation {
       }
     }
     this.onStateChange(entityId, newCallback)
+  }
+
+  protected runAt(date: Date, callback: () => Promise<void> | void): string {
+    const id = `${Date.now()}-${Math.floor(Math.random() * 10000)}`
+    this._queue.push({
+      id,
+      date,
+      callback
+    })
+    return id
+  }
+
+  protected clearRunAt(id: string) {
+    this._queue = this._queue.filter((q) => q.id !== id)
+  }
+
+  private async _checkQueue() {
+    const now = new Date()
+    for (const queue of this._queue) {
+      if (now >= queue.date) {
+        try {
+          await queue.callback()
+        } catch (e) {
+          Logger.error(e)
+        }
+      }
+    }
+
+    this._queue = this._queue.filter((q) => now < q.date)
   }
 
   async getState (entityId: string) {
