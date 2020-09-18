@@ -54,6 +54,27 @@ services:
       - <path/to/your/automations/folder>:/opt/app/src/automations
     restart: unless-stopped
 ```
+### NodeJS Dependencies
+You can install dependencies directly with npm (on native installations) or in the docker version setting up an environment variable called **DEPENDENCIES**.
+
+__NodeJS__
+```bash
+npm install dependency1 dependency2 ...
+```
+
+__Docker__
+```bash
+docker run \
+  -e HA_HOST=<your-host> \
+  -e HA_TOKEN=<token> \
+  -e MQTT_URI=<mqtt-uri> \
+  -e DEPENDENCIES= dependency1 dependency2 ...
+  -v <path/to/your/automations/folder>:/opt/app/src/automations \
+  --restart=unless-stopped \
+  danitetus/hass-sidecar:latest
+```
+__
+
 
 ### Setup
 
