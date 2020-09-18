@@ -6,12 +6,13 @@ This is an app written in **Typescript** and **NodeJS** to interact with your Ho
 
 All automations are *hotloaded*, so you can create, modify and delete automations and they will be unloaded and loaded on the fly, without reboot the app.
 
-## Why?
+## Why
 
 Home Assistant is a great platform to manage our smart devices, but for me the automations system is not entirely powerful, and on many occasions I need to do more complex things that I cannot do with a simple yaml or with the web interface. I love typescript and NodeJS and it is faster for me to write automations in this environment.
 
-
 ## Getting started
+
+For detailed information about clases and methods, go to [docs/globals.md](docs/globals.md)
 
 ### Installation
 
@@ -54,7 +55,6 @@ services:
     restart: unless-stopped
 ```
 
-
 ### Setup
 
 The best way to setup is to create a **.env** file in the projects root folder. You have tu set these variables:
@@ -73,7 +73,7 @@ npm start
 
 ## Creating automations
 
-All automations have to be stored in **./src/automations** (you can organize them in subfolders). They should extend **Automation** class. 
+All automations have to be stored in **./src/automations** (you can organize them in subfolders). They should extend **Automation** class.
 
 Let's create an automation example. We are going to turn on and off a light when occupancy sensor changes:
 
