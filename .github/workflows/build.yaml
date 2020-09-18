@@ -72,11 +72,11 @@ jobs:
         env:
           KUBECONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: '"--insecure-skip-tls-verify set image -n hass --record deployment/hass-sidecar hass-sidecar=${{ steps.prep.outputs.tags }}"'
+          args: --insecure-skip-tls-verify set image -n hass --record deployment/hass-sidecar hass-sidecar=${{ steps.prep.outputs.tags }}
       - name: Verify deployment
         id: verify_deployment
         uses: danitetus/kubectl-action@v2-beta1
         env:
           KUBECONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: '--insecure-skip-tls-verify rollout status -n hass deployment/hass-sidecar'
+          args: --insecure-skip-tls-verify rollout status -n hass deployment/hass-sidecar
