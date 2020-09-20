@@ -4,6 +4,14 @@
 
 # Class: Automation
 
+Automation class
+Interacts with Home Assistant websocket connection and
+with the mqtt server.
+
+Provides methods for easy manage the devices and get their states
+
+**`abstract`** 
+
 ## Hierarchy
 
 * **Automation**
@@ -35,6 +43,9 @@
 * [clearTimeout](_interfaces_automation_.automation.md#cleartimeout)
 * [destroy](_interfaces_automation_.automation.md#destroy)
 * [getState](_interfaces_automation_.automation.md#getstate)
+* [lightToggle](_interfaces_automation_.automation.md#lighttoggle)
+* [lightTurnOff](_interfaces_automation_.automation.md#lightturnoff)
+* [lightTurnOn](_interfaces_automation_.automation.md#lightturnon)
 * [mqttPublish](_interfaces_automation_.automation.md#mqttpublish)
 * [mqttSubscribe](_interfaces_automation_.automation.md#mqttsubscribe)
 * [onConcretState](_interfaces_automation_.automation.md#onconcretstate)
@@ -42,6 +53,9 @@
 * [runAt](_interfaces_automation_.automation.md#runat)
 * [setInterval](_interfaces_automation_.automation.md#setinterval)
 * [setTimeout](_interfaces_automation_.automation.md#settimeout)
+* [switchToggle](_interfaces_automation_.automation.md#switchtoggle)
+* [switchTurnOff](_interfaces_automation_.automation.md#switchturnoff)
+* [switchTurnOn](_interfaces_automation_.automation.md#switchturnon)
 
 ## Constructors
 
@@ -49,7 +63,7 @@
 
 \+ **new Automation**(`title?`: undefined \| string, `description?`: undefined \| string): [Automation](_interfaces_automation_.automation.md)
 
-*Defined in [interfaces/Automation.ts:28](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L28)*
+*Defined in [interfaces/Automation.ts:39](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L39)*
 
 #### Parameters:
 
@@ -64,9 +78,9 @@ Name | Type |
 
 ### \_api
 
-• `Private` **\_api**: [API](_api_.api.md)
+• `Private` **\_api**: [API](_lib_api_.api.md)
 
-*Defined in [interfaces/Automation.ts:27](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L27)*
+*Defined in [interfaces/Automation.ts:38](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L38)*
 
 ___
 
@@ -74,15 +88,15 @@ ___
 
 • `Private` **\_intervals**: Timeout[] = []
 
-*Defined in [interfaces/Automation.ts:19](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L19)*
+*Defined in [interfaces/Automation.ts:30](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L30)*
 
 ___
 
 ### \_mqtt
 
-• `Private` **\_mqtt**: [MQTT](_mqtt_.mqtt.md)
+• `Private` **\_mqtt**: [MQTT](_lib_mqtt_.mqtt.md)
 
-*Defined in [interfaces/Automation.ts:28](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L28)*
+*Defined in [interfaces/Automation.ts:39](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L39)*
 
 ___
 
@@ -90,7 +104,7 @@ ___
 
 • `Private` **\_mqttSubscriptions**: Map\<string, number> = new Map()
 
-*Defined in [interfaces/Automation.ts:20](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L20)*
+*Defined in [interfaces/Automation.ts:31](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L31)*
 
 ___
 
@@ -98,7 +112,7 @@ ___
 
 • `Private` **\_queue**: [IQueue](../modules/_interfaces_automation_.md#iqueue)[] = []
 
-*Defined in [interfaces/Automation.ts:22](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L22)*
+*Defined in [interfaces/Automation.ts:33](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L33)*
 
 ___
 
@@ -106,7 +120,7 @@ ___
 
 • `Private` **\_stateSubscriptions**: { entityId: string ; id: number  }[] = []
 
-*Defined in [interfaces/Automation.ts:21](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L21)*
+*Defined in [interfaces/Automation.ts:32](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L32)*
 
 ___
 
@@ -114,7 +128,7 @@ ___
 
 • `Private` **\_timeouts**: Timeout[] = []
 
-*Defined in [interfaces/Automation.ts:18](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L18)*
+*Defined in [interfaces/Automation.ts:29](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L29)*
 
 ___
 
@@ -122,7 +136,7 @@ ___
 
 • `Readonly` **description**: string = ""
 
-*Defined in [interfaces/Automation.ts:25](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L25)*
+*Defined in [interfaces/Automation.ts:36](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L36)*
 
 ___
 
@@ -130,7 +144,7 @@ ___
 
 • `Readonly` **title**: string = ""
 
-*Defined in [interfaces/Automation.ts:24](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L24)*
+*Defined in [interfaces/Automation.ts:35](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L35)*
 
 ## Methods
 
@@ -138,7 +152,11 @@ ___
 
 ▸ `Private`**_checkQueue**(): Promise\<void>
 
-*Defined in [interfaces/Automation.ts:98](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L98)*
+*Defined in [interfaces/Automation.ts:162](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L162)*
+
+Check if any queue have to be execute at this time
+
+**`memberof`** Automation
 
 **Returns:** Promise\<void>
 
@@ -146,18 +164,22 @@ ___
 
 ### callService
 
-▸ **callService**(`domain`: string, `service`: string, `entityId`: string \| null, `data`: any): Promise\<any>
+▸ `Protected`**callService**(`domain`: string, `service`: string, `entityId`: string \| null, `data`: any): Promise\<any>
 
-*Defined in [interfaces/Automation.ts:117](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L117)*
+*Defined in [interfaces/Automation.ts:200](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L200)*
+
+Call service
+
+**`memberof`** Automation
 
 #### Parameters:
 
-Name | Type |
------- | ------ |
-`domain` | string |
-`service` | string |
-`entityId` | string \| null |
-`data` | any |
+Name | Type | Description |
+------ | ------ | ------ |
+`domain` | string | Domain, for example: light |
+`service` | string | Service, for example: turn_on |
+`entityId` | string \| null | Entity id |
+`data` | any | Attributes (optional) |
 
 **Returns:** Promise\<any>
 
@@ -165,15 +187,19 @@ ___
 
 ### clearInterval
 
-▸ **clearInterval**(`id`: Timeout): void
+▸ `Protected`**clearInterval**(`id`: Timeout): void
 
-*Defined in [interfaces/Automation.ts:139](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L139)*
+*Defined in [interfaces/Automation.ts:328](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L328)*
+
+Clear interval
+
+**`memberof`** Automation
 
 #### Parameters:
 
-Name | Type |
------- | ------ |
-`id` | Timeout |
+Name | Type | Description |
+------ | ------ | ------ |
+`id` | Timeout | ID of the interval |
 
 **Returns:** void
 
@@ -183,13 +209,17 @@ ___
 
 ▸ `Protected`**clearRunAt**(`id`: string): void
 
-*Defined in [interfaces/Automation.ts:94](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L94)*
+*Defined in [interfaces/Automation.ts:152](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L152)*
+
+Clear run at queue
+
+**`memberof`** Automation
 
 #### Parameters:
 
-Name | Type |
------- | ------ |
-`id` | string |
+Name | Type | Description |
+------ | ------ | ------ |
+`id` | string | queue id |
 
 **Returns:** void
 
@@ -197,15 +227,19 @@ ___
 
 ### clearTimeout
 
-▸ **clearTimeout**(`id`: Timeout): void
+▸ `Protected`**clearTimeout**(`id`: Timeout): void
 
-*Defined in [interfaces/Automation.ts:127](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L127)*
+*Defined in [interfaces/Automation.ts:300](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L300)*
+
+Clear a timeout
+
+**`memberof`** Automation
 
 #### Parameters:
 
-Name | Type |
------- | ------ |
-`id` | Timeout |
+Name | Type | Description |
+------ | ------ | ------ |
+`id` | Timeout | Timeout id |
 
 **Returns:** void
 
@@ -215,7 +249,12 @@ ___
 
 ▸ **destroy**(): void
 
-*Defined in [interfaces/Automation.ts:145](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L145)*
+*Defined in [interfaces/Automation.ts:340](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L340)*
+
+Destroy method
+All timeout, intervals, queues and subscriptions are deleted
+
+**`memberof`** Automation
 
 **Returns:** void
 
@@ -223,9 +262,13 @@ ___
 
 ### getState
 
-▸ **getState**(`entityId`: string): Promise\<[IState](../interfaces/_interfaces_istate_.istate.md)>
+▸ `Protected`**getState**(`entityId`: string): Promise\<[IState](../interfaces/_interfaces_istate_.istate.md)>
 
-*Defined in [interfaces/Automation.ts:113](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L113)*
+*Defined in [interfaces/Automation.ts:185](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L185)*
+
+Get entity state
+
+**`memberof`** Automation
 
 #### Parameters:
 
@@ -237,11 +280,77 @@ Name | Type |
 
 ___
 
+### lightToggle
+
+▸ `Protected`**lightToggle**(`entityId`: string): Promise\<any>
+
+*Defined in [interfaces/Automation.ts:238](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L238)*
+
+Toggle a light state
+
+**`memberof`** Automation
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`entityId` | string |
+
+**Returns:** Promise\<any>
+
+___
+
+### lightTurnOff
+
+▸ `Protected`**lightTurnOff**(`entityId`: string, `data`: any): Promise\<any>
+
+*Defined in [interfaces/Automation.ts:226](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L226)*
+
+Turns off a light
+
+**`memberof`** Automation
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`entityId` | string |
+`data` | any |
+
+**Returns:** Promise\<any>
+
+___
+
+### lightTurnOn
+
+▸ `Protected`**lightTurnOn**(`entityId`: string, `data`: any): Promise\<any>
+
+*Defined in [interfaces/Automation.ts:213](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L213)*
+
+Turns on a light
+
+**`memberof`** Automation
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`entityId` | string |
+`data` | any |
+
+**Returns:** Promise\<any>
+
+___
+
 ### mqttPublish
 
-▸ **mqttPublish**(`topic`: string, `payload`: string, `options?`: mqtt.IClientPublishOptions): void
+▸ `Protected`**mqttPublish**(`topic`: string, `payload`: string, `options?`: mqtt.IClientPublishOptions): void
 
-*Defined in [interfaces/Automation.ts:53](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L53)*
+*Defined in [interfaces/Automation.ts:72](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L72)*
+
+Publish to an mqtt topic
+
+**`memberof`** Automation
 
 #### Parameters:
 
@@ -257,9 +366,13 @@ ___
 
 ### mqttSubscribe
 
-▸ **mqttSubscribe**(`topic`: string, `options`: IClientSubscribeOptions, `callback`: [ISubscriptionCallback](../modules/_mqtt_.md#isubscriptioncallback)): void
+▸ `Protected`**mqttSubscribe**(`topic`: string, `options`: IClientSubscribeOptions, `callback`: [ISubscriptionCallback](../modules/_lib_mqtt_.md#isubscriptioncallback)): void
 
-*Defined in [interfaces/Automation.ts:57](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L57)*
+*Defined in [interfaces/Automation.ts:84](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L84)*
+
+Subscribe to an mqtt topic
+
+**`memberof`** Automation
 
 #### Parameters:
 
@@ -267,7 +380,7 @@ Name | Type |
 ------ | ------ |
 `topic` | string |
 `options` | IClientSubscribeOptions |
-`callback` | [ISubscriptionCallback](../modules/_mqtt_.md#isubscriptioncallback) |
+`callback` | [ISubscriptionCallback](../modules/_lib_mqtt_.md#isubscriptioncallback) |
 
 **Returns:** void
 
@@ -275,9 +388,13 @@ ___
 
 ### onConcretState
 
-▸ **onConcretState**(`entityId`: string, `state`: string, `callback`: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback)): void
+▸ `Protected`**onConcretState**(`entityId`: string, `state`: string, `callback`: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback)): void
 
-*Defined in [interfaces/Automation.ts:71](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L71)*
+*Defined in [interfaces/Automation.ts:113](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L113)*
+
+Subscribe to a specific state on entity
+
+**`memberof`** Automation
 
 #### Parameters:
 
@@ -293,9 +410,13 @@ ___
 
 ### onStateChange
 
-▸ **onStateChange**(`entityId`: string, `callback`: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback)): void
+▸ `Protected`**onStateChange**(`entityId`: string, `callback`: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback)): void
 
-*Defined in [interfaces/Automation.ts:66](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L66)*
+*Defined in [interfaces/Automation.ts:100](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L100)*
+
+Subscribe to an entity_id state change
+
+**`memberof`** Automation
 
 #### Parameters:
 
@@ -312,14 +433,18 @@ ___
 
 ▸ `Protected`**runAt**(`date`: Date, `callback`: () => Promise\<void> \| void): string
 
-*Defined in [interfaces/Automation.ts:84](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L84)*
+*Defined in [interfaces/Automation.ts:135](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L135)*
+
+Run a function at specific time
+
+**`memberof`** Automation
 
 #### Parameters:
 
-Name | Type |
------- | ------ |
-`date` | Date |
-`callback` | () => Promise\<void> \| void |
+Name | Type | Description |
+------ | ------ | ------ |
+`date` | Date | Date when execute |
+`callback` | () => Promise\<void> \| void | Callback |
 
 **Returns:** string
 
@@ -327,16 +452,20 @@ ___
 
 ### setInterval
 
-▸ **setInterval**(`callback`: [ICallback](../modules/_interfaces_automation_.md#icallback), `milliseconds`: number): Timeout
+▸ `Protected`**setInterval**(`callback`: [ICallback](../modules/_interfaces_automation_.md#icallback), `milliseconds`: number): Timeout
 
-*Defined in [interfaces/Automation.ts:133](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L133)*
+*Defined in [interfaces/Automation.ts:315](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L315)*
+
+Creates a interval to execute a function
+
+**`memberof`** Automation
 
 #### Parameters:
 
-Name | Type |
------- | ------ |
-`callback` | [ICallback](../modules/_interfaces_automation_.md#icallback) |
-`milliseconds` | number |
+Name | Type | Description |
+------ | ------ | ------ |
+`callback` | [ICallback](../modules/_interfaces_automation_.md#icallback) | Callback function |
+`milliseconds` | number | Milliseconds of the interval |
 
 **Returns:** Timeout
 
@@ -344,15 +473,79 @@ ___
 
 ### setTimeout
 
-▸ **setTimeout**(`callback`: [ICallback](../modules/_interfaces_automation_.md#icallback), `milliseconds`: number): Timeout
+▸ `Protected`**setTimeout**(`callback`: [ICallback](../modules/_interfaces_automation_.md#icallback), `milliseconds`: number): Timeout
 
-*Defined in [interfaces/Automation.ts:121](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L121)*
+*Defined in [interfaces/Automation.ts:287](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L287)*
+
+Creates a timeout to run a function
+
+**`memberof`** Automation
+
+#### Parameters:
+
+Name | Type | Description |
+------ | ------ | ------ |
+`callback` | [ICallback](../modules/_interfaces_automation_.md#icallback) | Callback function |
+`milliseconds` | number | Milliseconds to wait until run |
+
+**Returns:** Timeout
+
+___
+
+### switchToggle
+
+▸ `Protected`**switchToggle**(`entityId`: string): Promise\<any>
+
+*Defined in [interfaces/Automation.ts:274](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L274)*
+
+Toggle a switch
+
+**`memberof`** Automation
 
 #### Parameters:
 
 Name | Type |
 ------ | ------ |
-`callback` | [ICallback](../modules/_interfaces_automation_.md#icallback) |
-`milliseconds` | number |
+`entityId` | string |
 
-**Returns:** Timeout
+**Returns:** Promise\<any>
+
+___
+
+### switchTurnOff
+
+▸ `Protected`**switchTurnOff**(`entityId`: string): Promise\<any>
+
+*Defined in [interfaces/Automation.ts:262](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L262)*
+
+Turn off a switch
+
+**`memberof`** Automation
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`entityId` | string |
+
+**Returns:** Promise\<any>
+
+___
+
+### switchTurnOn
+
+▸ `Protected`**switchTurnOn**(`entityId`: string): Promise\<any>
+
+*Defined in [interfaces/Automation.ts:250](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L250)*
+
+Turn on a switch
+
+**`memberof`** Automation
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`entityId` | string |
+
+**Returns:** Promise\<any>

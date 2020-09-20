@@ -10,11 +10,13 @@ This is an app written in **Typescript** and **NodeJS** to interact with your Ho
 
 All automations are *hotloaded*, so you can create, modify and delete automations and they will be unloaded and loaded on the fly, without reboot the app.
 
-## Why?
+## Why
 
 Home Assistant is a great platform to manage our smart devices, but for me the automations system is not entirely powerful, and on many occasions I need to do more complex things that I cannot do with a simple yaml or with the web interface. I love typescript and NodeJS and it is faster for me to write automations in this environment.
 
 ## Getting started
+
+For detailed information about clases and methods, go to [docs/globals.md](docs/globals.md)
 
 ### Installation
 
@@ -56,6 +58,26 @@ services:
       - <path/to/your/automations/folder>:/opt/app/src/automations
     restart: unless-stopped
 ```
+### NodeJS Dependencies
+You can install dependencies directly with npm (on native installations) or in the docker version setting up an environment variable called **DEPENDENCIES**.
+
+__NodeJS__
+```bash
+npm install dependency1 dependency2 ...
+```
+
+__Docker__
+```bash
+docker run \
+  -e HA_HOST=<your-host> \
+  -e HA_TOKEN=<token> \
+  -e MQTT_URI=<mqtt-uri> \
+  -e DEPENDENCIES= dependency1 dependency2 ...
+  -v <path/to/your/automations/folder>:/opt/app/src/automations \
+  --restart=unless-stopped \
+  danitetus/hass-sidecar:latest
+```
+__
 
 ### Setup
 
@@ -75,7 +97,7 @@ npm start
 
 ## Creating automations
 
-All automations have to be stored in **./src/automations** (you can organize them in subfolders). They should extend **Automation** class. 
+All automations have to be stored in **./src/automations** (you can organize them in subfolders). They should extend **Automation** class.
 
 Let's create an automation example. We are going to turn on and off a light when occupancy sensor changes:
 

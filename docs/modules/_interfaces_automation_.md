@@ -21,7 +21,7 @@
 
 Ƭ  **ICallback**: () => void
 
-*Defined in [interfaces/Automation.ts:15](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L15)*
+*Defined in [interfaces/Automation.ts:15](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L15)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 Ƭ  **IQueue**: { callback: () => Promise\<void> \| void ; date: Date ; id: string  }
 
-*Defined in [interfaces/Automation.ts:9](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L9)*
+*Defined in [interfaces/Automation.ts:9](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/Automation.ts#L9)*
 
 #### Type declaration:
 

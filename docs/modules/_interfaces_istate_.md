@@ -18,6 +18,6 @@
 
 ### IStateCallback
 
-Ƭ  **IStateCallback**: (newState: [IState](../interfaces/_interfaces_istate_.istate.md),oldState: [IState](../interfaces/_interfaces_istate_.istate.md)) => void
+Ƭ  **IStateCallback**: (newState: [IState](../interfaces/_interfaces_istate_.istate.md),oldState: [IState](../interfaces/_interfaces_istate_.istate.md) \| null) => void
 
-*Defined in [interfaces/IState.ts:14](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/IState.ts#L14)*
+*Defined in [interfaces/IState.ts:14](https://github.com/danitetus/hass-sidecar/blob/d952827/src/interfaces/IState.ts#L14)*
