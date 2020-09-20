@@ -1,7 +1,7 @@
 import ws from 'ws'
 import { EventEmitter } from 'events'
-import { IState } from './interfaces/IState'
-import Logger from './lib/Logger';
+import { IState } from '../interfaces/IState'
+import Logger from './Logger';
 
 type ICloseCallback = () => void
 

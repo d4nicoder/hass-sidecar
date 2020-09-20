@@ -1,5 +1,5 @@
 import mqtt from 'mqtt'
-import Logger from './lib/Logger';
+import Logger from './Logger';
 
 export type ISubscriptionCallback = (topic: string, payload: any) => void
 interface ISubscription {

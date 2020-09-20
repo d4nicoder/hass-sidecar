@@ -1,7 +1,7 @@
-import API from "../API"
+import API from "../lib/API"
 import mqtt from 'mqtt'
-import MQTT from '../mqtt'
-import { ISubscriptionCallback } from '../mqtt';
+import MQTT from '../lib/mqtt'
+import { ISubscriptionCallback } from '../lib/mqtt';
 import { IStateCallback } from './IState';
 import Logger from "../lib/Logger";
 
@@ -194,11 +194,85 @@ abstract class Automation {
    * @param {string} service               Service, for example: turn_on
    * @param {(string | null)} entityId     Entity id
    * @param {*} data                       Attributes (optional)
-   * @returns
+   * @returns {Promise<any>}
    * @memberof Automation
    */
-  protected async callService (domain: string, service: string, entityId: string | null, data: any) {
+  protected async callService (domain: string, service: string, entityId: string | null, data: any): Promise<any> {
     return this._api.callService(domain, service, entityId, data)
+  }
+
+  /**
+   * Turns on a light
+   *
+   * @protected
+   * @param {string} entityId
+   * @param {*} data
+   * @returns {Promise<any>}
+   * @memberof Automation
+   */
+  protected async lightTurnOn(entityId: string, data: any): Promise<any> {
+    return this._api.callService('light', 'turn_on', entityId, data)
+  }
+
+  /**
+   * Turns off a light
+   *
+   * @protected
+   * @param {string} entityId
+   * @param {*} data
+   * @returns {Promise<any>}
+   * @memberof Automation
+   */
+  protected async lightTurnOff(entityId: string, data: any): Promise<any> {
+    return this._api.callService('light', 'turn_off', entityId, data)
+  }
+
+  /**
+   * Toggle a light state
+   *
+   * @protected
+   * @param {string} entityId
+   * @returns {Promise<any>}
+   * @memberof Automation
+   */
+  protected async lightToggle(entityId: string): Promise<any> {
+    return this._api.callService('light', 'toggle', entityId, {})
+  }
+
+  /**
+   * Turn on a switch
+   *
+   * @protected
+   * @param {string} entityId
+   * @returns {Promise<any>}
+   * @memberof Automation
+   */
+  protected async switchTurnOn(entityId: string): Promise<any> {
+    return this._api.callService('switch', 'turn_on', entityId, {})
+  }
+
+  /**
+   * Turn off a switch
+   *
+   * @protected
+   * @param {string} entityId
+   * @returns {Promise<any>}
+   * @memberof Automation
+   */
+  protected async switchTurnOff(entityId: string): Promise<any> {
+    return this._api.callService('switch', 'turn_off', entityId, {})
+  }
+
+  /**
+   * Toggle a switch
+   *
+   * @protected
+   * @param {string} entityId
+   * @returns {Promise<any>}
+   * @memberof Automation
+   */
+  protected async switchToggle(entityId: string): Promise<any> {
+    return this._api.callService('switch', 'toggle', entityId, {})
   }
 
   /**

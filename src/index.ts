@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
-import API from './API'
+import API from './lib/API'
 import Logger from './lib/Logger';
 
 // Load environment variables

@@ -1,10 +1,10 @@
 import websocketConnection from "./websocketConnection"
-import { IState, IStateCallback } from "./interfaces/IState"
+import { IState, IStateCallback } from "../interfaces/IState"
 import path from 'path';
 import chokidar from 'chokidar'
-import { Automation } from "./interfaces/Automation";
+import { Automation } from "../interfaces/Automation";
 
-import Logger from './lib/Logger';
+import Logger from './Logger';
 
 /**
  * Class to manage all interactions with the backend
