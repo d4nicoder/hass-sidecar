@@ -123,11 +123,26 @@ class MQTT {
     return {topic, id}
   }
 
+  /**
+   * Publish message into topic
+   *
+   * @param {string} topic                            topic
+   * @param {string} payload                          message to send
+   * @param {mqtt.IClientPublishOptions} [options]    publish options
+   * @memberof MQTT
+   */
   public publish(topic: string, payload: string, options?: mqtt.IClientPublishOptions) {
     options = options || {}
     this.client.publish(topic, payload, options)
   }
 
+  /**
+   * Unsubscribe to topic
+   *
+   * @param {string} topic  topic to unsubscribe
+   * @param {number} id     id of the subscription
+   * @memberof MQTT
+   */
   public unsubscribe(topic: string, id: number) {
     if (!this.subscriptions.has(topic)) {
       return
