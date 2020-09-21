@@ -23,7 +23,7 @@
 
 ▸ `Static`**debug**(`text`: any): void
 
-*Defined in [lib/Logger.ts:41](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/lib/Logger.ts#L41)*
+*Defined in [lib/Logger.ts:41](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/Logger.ts#L41)*
 
 #### Parameters:
 
@@ -39,7 +39,7 @@ ___
 
 ▸ `Static`**error**(`text`: any): void
 
-*Defined in [lib/Logger.ts:45](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/lib/Logger.ts#L45)*
+*Defined in [lib/Logger.ts:45](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/Logger.ts#L45)*
 
 #### Parameters:
 
@@ -55,7 +55,7 @@ ___
 
 ▸ `Static`**info**(`text`: any): void
 
-*Defined in [lib/Logger.ts:37](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/lib/Logger.ts#L37)*
+*Defined in [lib/Logger.ts:37](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/Logger.ts#L37)*
 
 #### Parameters:
 
@@ -71,7 +71,7 @@ ___
 
 ▸ `Static`**log**(`text`: any): void
 
-*Defined in [lib/Logger.ts:33](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/lib/Logger.ts#L33)*
+*Defined in [lib/Logger.ts:33](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/Logger.ts#L33)*
 
 #### Parameters:
 
