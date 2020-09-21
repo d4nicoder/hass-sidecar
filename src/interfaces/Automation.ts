@@ -18,7 +18,7 @@ type ICallback = () => void
  * Automation class
  * Interacts with Home Assistant websocket connection and
  * with the mqtt server.
- * 
+ *
  * Provides methods for easy manage the devices and get their states
  *
  * @abstract
@@ -279,7 +279,7 @@ abstract class Automation {
    * Creates a timeout to run a function
    *
    * @protected
-   * @param {ICallback} callback         Callback function 
+   * @param {ICallback} callback         Callback function
    * @param {number} milliseconds        Milliseconds to wait until run
    * @returns {NodeJS.Timeout}           ID if the timer
    * @memberof Automation
