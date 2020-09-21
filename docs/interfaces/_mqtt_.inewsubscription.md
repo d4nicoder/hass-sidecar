@@ -21,7 +21,7 @@
 
 •  **id**: number
 
-*Defined in [mqtt.ts:12](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L12)*
+*Defined in [mqtt.ts:12](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L12)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 •  **topic**: string
 
-*Defined in [mqtt.ts:11](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L11)*
+*Defined in [mqtt.ts:11](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L11)*

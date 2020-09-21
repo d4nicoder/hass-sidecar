@@ -25,4 +25,4 @@
 
 Ƭ  **ISubscriptionCallback**: (topic: string,payload: any) => void
 
-*Defined in [mqtt.ts:4](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L4)*
+*Defined in [mqtt.ts:4](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L4)*

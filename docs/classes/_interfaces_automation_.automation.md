@@ -49,7 +49,7 @@
 
 \+ **new Automation**(`title?`: undefined \| string, `description?`: undefined \| string): [Automation](_interfaces_automation_.automation.md)
 
-*Defined in [interfaces/Automation.ts:28](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L28)*
+*Defined in [interfaces/Automation.ts:28](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L28)*
 
 #### Parameters:
 
@@ -66,7 +66,7 @@ Name | Type |
 
 • `Private` **\_api**: [API](_api_.api.md)
 
-*Defined in [interfaces/Automation.ts:27](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L27)*
+*Defined in [interfaces/Automation.ts:27](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L27)*
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 • `Private` **\_intervals**: Timeout[] = []
 
-*Defined in [interfaces/Automation.ts:19](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L19)*
+*Defined in [interfaces/Automation.ts:19](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L19)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 • `Private` **\_mqtt**: [MQTT](_mqtt_.mqtt.md)
 
-*Defined in [interfaces/Automation.ts:28](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L28)*
+*Defined in [interfaces/Automation.ts:28](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L28)*
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 • `Private` **\_mqttSubscriptions**: Map\<string, number> = new Map()
 
-*Defined in [interfaces/Automation.ts:20](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L20)*
+*Defined in [interfaces/Automation.ts:20](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L20)*
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 • `Private` **\_queue**: [IQueue](../modules/_interfaces_automation_.md#iqueue)[] = []
 
-*Defined in [interfaces/Automation.ts:22](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L22)*
+*Defined in [interfaces/Automation.ts:22](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L22)*
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 • `Private` **\_stateSubscriptions**: { entityId: string ; id: number  }[] = []
 
-*Defined in [interfaces/Automation.ts:21](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L21)*
+*Defined in [interfaces/Automation.ts:21](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L21)*
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 • `Private` **\_timeouts**: Timeout[] = []
 
-*Defined in [interfaces/Automation.ts:18](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L18)*
+*Defined in [interfaces/Automation.ts:18](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L18)*
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 • `Readonly` **description**: string = ""
 
-*Defined in [interfaces/Automation.ts:25](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L25)*
+*Defined in [interfaces/Automation.ts:25](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L25)*
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 • `Readonly` **title**: string = ""
 
-*Defined in [interfaces/Automation.ts:24](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L24)*
+*Defined in [interfaces/Automation.ts:24](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L24)*
 
 ## Methods
 
@@ -138,7 +138,7 @@ ___
 
 ▸ `Private`**_checkQueue**(): Promise\<void>
 
-*Defined in [interfaces/Automation.ts:98](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L98)*
+*Defined in [interfaces/Automation.ts:98](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L98)*
 
 **Returns:** Promise\<void>
 
@@ -148,7 +148,7 @@ ___
 
 ▸ **callService**(`domain`: string, `service`: string, `entityId`: string \| null, `data`: any): Promise\<any>
 
-*Defined in [interfaces/Automation.ts:117](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L117)*
+*Defined in [interfaces/Automation.ts:117](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L117)*
 
 #### Parameters:
 
@@ -167,7 +167,7 @@ ___
 
 ▸ **clearInterval**(`id`: Timeout): void
 
-*Defined in [interfaces/Automation.ts:139](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L139)*
+*Defined in [interfaces/Automation.ts:139](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L139)*
 
 #### Parameters:
 
@@ -183,7 +183,7 @@ ___
 
 ▸ `Protected`**clearRunAt**(`id`: string): void
 
-*Defined in [interfaces/Automation.ts:94](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L94)*
+*Defined in [interfaces/Automation.ts:94](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L94)*
 
 #### Parameters:
 
@@ -199,7 +199,7 @@ ___
 
 ▸ **clearTimeout**(`id`: Timeout): void
 
-*Defined in [interfaces/Automation.ts:127](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L127)*
+*Defined in [interfaces/Automation.ts:127](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L127)*
 
 #### Parameters:
 
@@ -215,7 +215,7 @@ ___
 
 ▸ **destroy**(): void
 
-*Defined in [interfaces/Automation.ts:145](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L145)*
+*Defined in [interfaces/Automation.ts:145](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L145)*
 
 **Returns:** void
 
@@ -225,7 +225,7 @@ ___
 
 ▸ **getState**(`entityId`: string): Promise\<[IState](../interfaces/_interfaces_istate_.istate.md)>
 
-*Defined in [interfaces/Automation.ts:113](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L113)*
+*Defined in [interfaces/Automation.ts:113](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L113)*
 
 #### Parameters:
 
@@ -241,7 +241,7 @@ ___
 
 ▸ **mqttPublish**(`topic`: string, `payload`: string, `options?`: mqtt.IClientPublishOptions): void
 
-*Defined in [interfaces/Automation.ts:53](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L53)*
+*Defined in [interfaces/Automation.ts:53](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L53)*
 
 #### Parameters:
 
@@ -259,7 +259,7 @@ ___
 
 ▸ **mqttSubscribe**(`topic`: string, `options`: IClientSubscribeOptions, `callback`: [ISubscriptionCallback](../modules/_mqtt_.md#isubscriptioncallback)): void
 
-*Defined in [interfaces/Automation.ts:57](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L57)*
+*Defined in [interfaces/Automation.ts:57](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L57)*
 
 #### Parameters:
 
@@ -277,7 +277,7 @@ ___
 
 ▸ **onConcretState**(`entityId`: string, `state`: string, `callback`: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback)): void
 
-*Defined in [interfaces/Automation.ts:71](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L71)*
+*Defined in [interfaces/Automation.ts:71](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L71)*
 
 #### Parameters:
 
@@ -295,7 +295,7 @@ ___
 
 ▸ **onStateChange**(`entityId`: string, `callback`: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback)): void
 
-*Defined in [interfaces/Automation.ts:66](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L66)*
+*Defined in [interfaces/Automation.ts:66](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L66)*
 
 #### Parameters:
 
@@ -312,7 +312,7 @@ ___
 
 ▸ `Protected`**runAt**(`date`: Date, `callback`: () => Promise\<void> \| void): string
 
-*Defined in [interfaces/Automation.ts:84](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L84)*
+*Defined in [interfaces/Automation.ts:84](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L84)*
 
 #### Parameters:
 
@@ -329,7 +329,7 @@ ___
 
 ▸ **setInterval**(`callback`: [ICallback](../modules/_interfaces_automation_.md#icallback), `milliseconds`: number): Timeout
 
-*Defined in [interfaces/Automation.ts:133](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L133)*
+*Defined in [interfaces/Automation.ts:133](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L133)*
 
 #### Parameters:
 
@@ -346,7 +346,7 @@ ___
 
 ▸ **setTimeout**(`callback`: [ICallback](../modules/_interfaces_automation_.md#icallback), `milliseconds`: number): Timeout
 
-*Defined in [interfaces/Automation.ts:121](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/interfaces/Automation.ts#L121)*
+*Defined in [interfaces/Automation.ts:121](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/interfaces/Automation.ts#L121)*
 
 #### Parameters:
 

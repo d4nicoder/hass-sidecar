@@ -8,7 +8,7 @@
 
 ### Classes
 
-* [default](../classes/_websocketconnection_.default.md)
+* [WebsocketConnection](../classes/_websocketconnection_.websocketconnection.md)
 
 ### Type aliases
 
@@ -20,4 +20,4 @@
 
 Ƭ  **ICloseCallback**: () => void
 
-*Defined in [websocketConnection.ts:6](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/websocketConnection.ts#L6)*
+*Defined in [websocketConnection.ts:6](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/websocketConnection.ts#L6)*

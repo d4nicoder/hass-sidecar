@@ -34,7 +34,7 @@
 
 \+ **new MQTT**(): [MQTT](_mqtt_.mqtt.md)
 
-*Defined in [mqtt.ts:19](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L19)*
+*Defined in [mqtt.ts:19](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L19)*
 
 **Returns:** [MQTT](_mqtt_.mqtt.md)
 
@@ -44,7 +44,7 @@
 
 • `Private` **client**: mqtt.Client
 
-*Defined in [mqtt.ts:17](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L17)*
+*Defined in [mqtt.ts:17](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L17)*
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 • `Private` **subscriptions**: Map\<string, [ISubscription](../interfaces/_mqtt_.isubscription.md)[]> = new Map()
 
-*Defined in [mqtt.ts:18](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L18)*
+*Defined in [mqtt.ts:18](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L18)*
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 ▪ `Static` **instance**: [MQTT](_mqtt_.mqtt.md)
 
-*Defined in [mqtt.ts:19](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L19)*
+*Defined in [mqtt.ts:19](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L19)*
 
 ## Methods
 
@@ -68,7 +68,7 @@ ___
 
 ▸ `Private`**handleMessage**(`topic`: string, `message`: any, `packet`: any): void
 
-*Defined in [mqtt.ts:35](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L35)*
+*Defined in [mqtt.ts:35](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L35)*
 
 #### Parameters:
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **publish**(`topic`: string, `payload`: string, `options?`: mqtt.IClientPublishOptions): void
 
-*Defined in [mqtt.ts:89](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L89)*
+*Defined in [mqtt.ts:89](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L89)*
 
 #### Parameters:
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **subscribe**(`topic`: string, `options`: IClientSubscribeOptions, `callback`: [ISubscriptionCallback](../modules/_mqtt_.md#isubscriptioncallback)): [INewSubscription](../interfaces/_mqtt_.inewsubscription.md)
 
-*Defined in [mqtt.ts:59](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L59)*
+*Defined in [mqtt.ts:59](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L59)*
 
 #### Parameters:
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **unsubscribe**(`topic`: string, `id`: number): void
 
-*Defined in [mqtt.ts:94](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L94)*
+*Defined in [mqtt.ts:94](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L94)*
 
 #### Parameters:
 
@@ -139,6 +139,6 @@ ___
 
 ▸ `Static`**getInstance**(): [MQTT](_mqtt_.mqtt.md)
 
-*Defined in [mqtt.ts:50](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/mqtt.ts#L50)*
+*Defined in [mqtt.ts:50](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/mqtt.ts#L50)*
 
 **Returns:** [MQTT](_mqtt_.mqtt.md)

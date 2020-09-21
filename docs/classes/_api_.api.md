@@ -43,7 +43,7 @@
 
 \+ **new API**(): [API](_api_.api.md)
 
-*Defined in [API.ts:20](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L20)*
+*Defined in [API.ts:20](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L20)*
 
 **Returns:** [API](_api_.api.md)
 
@@ -53,7 +53,7 @@
 
 • `Private` **\_automations**: Map\<string, [Automation](_interfaces_automation_.automation.md)> = new Map()
 
-*Defined in [API.ts:13](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L13)*
+*Defined in [API.ts:13](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L13)*
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 • `Private` **\_connection**: websocketConnection
 
-*Defined in [API.ts:14](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L14)*
+*Defined in [API.ts:14](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L14)*
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 • `Private` **\_nextSunrise**: Date = new Date()
 
-*Defined in [API.ts:18](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L18)*
+*Defined in [API.ts:18](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L18)*
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 • `Private` **\_nextSunset**: Date = new Date()
 
-*Defined in [API.ts:17](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L17)*
+*Defined in [API.ts:17](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L17)*
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 • `Private` **\_stateListeners**: Map\<string, { callback: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback) ; id: number  }[]> = new Map()
 
-*Defined in [API.ts:16](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L16)*
+*Defined in [API.ts:16](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L16)*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 • `Private` **\_states**: Map\<string, [IState](../interfaces/_interfaces_istate_.istate.md)> = new Map()
 
-*Defined in [API.ts:15](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L15)*
+*Defined in [API.ts:15](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L15)*
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 ▪ `Static` `Private` **\_instance**: [API](_api_.api.md)
 
-*Defined in [API.ts:20](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L20)*
+*Defined in [API.ts:20](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L20)*
 
 ## Methods
 
@@ -109,7 +109,7 @@ ___
 
 ▸ `Private`**_bootstrap**(): Promise\<void>
 
-*Defined in [API.ts:187](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L187)*
+*Defined in [API.ts:187](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L187)*
 
 **Returns:** Promise\<void>
 
@@ -119,7 +119,7 @@ ___
 
 ▸ `Private`**_modifiedFile**(`ev`: string, `filename`: string): void
 
-*Defined in [API.ts:202](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L202)*
+*Defined in [API.ts:202](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L202)*
 
 #### Parameters:
 
@@ -136,7 +136,7 @@ ___
 
 ▸ `Private`**_onStateChange**(): void
 
-*Defined in [API.ts:155](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L155)*
+*Defined in [API.ts:155](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L155)*
 
 **Returns:** void
 
@@ -146,7 +146,7 @@ ___
 
 ▸ `Private`**_syncStates**(): Promise\<unknown>
 
-*Defined in [API.ts:132](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L132)*
+*Defined in [API.ts:132](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L132)*
 
 **Returns:** Promise\<unknown>
 
@@ -156,7 +156,7 @@ ___
 
 ▸ `Private`**_unload**(): void
 
-*Defined in [API.ts:225](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L225)*
+*Defined in [API.ts:225](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L225)*
 
 **Returns:** void
 
@@ -166,7 +166,7 @@ ___
 
 ▸ **callService**(`domain`: string, `service`: string, `entityId`: string \| null, `data`: any): Promise\<any>
 
-*Defined in [API.ts:103](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L103)*
+*Defined in [API.ts:103](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L103)*
 
 #### Parameters:
 
@@ -185,7 +185,7 @@ ___
 
 ▸ **clearOnState**(`entityId`: string, `id`: number): void
 
-*Defined in [API.ts:77](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L77)*
+*Defined in [API.ts:77](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L77)*
 
 #### Parameters:
 
@@ -202,7 +202,7 @@ ___
 
 ▸ **getState**(`entityId`: string): Promise\<[IState](../interfaces/_interfaces_istate_.istate.md)>
 
-*Defined in [API.ts:95](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L95)*
+*Defined in [API.ts:95](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L95)*
 
 Get states
 Get all entities states and stores in a Map
@@ -221,7 +221,7 @@ ___
 
 ▸ **onState**(`entityId`: string, `callback`: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback)): object
 
-*Defined in [API.ts:56](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L56)*
+*Defined in [API.ts:56](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L56)*
 
 #### Parameters:
 
@@ -243,6 +243,6 @@ ___
 
 ▸ `Static`**getInstance**(): [API](_api_.api.md)
 
-*Defined in [API.ts:48](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/API.ts#L48)*
+*Defined in [API.ts:48](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/API.ts#L48)*
 
 **Returns:** [API](_api_.api.md)

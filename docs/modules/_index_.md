@@ -16,6 +16,6 @@
 
 ▸ `Const`**init**(): Promise\<void>
 
-*Defined in [index.ts:9](https://github.com/danitetus/hass-sidecar/blob/ebe6f85/src/index.ts#L9)*
+*Defined in [index.ts:9](https://github.com/danitetus/hass-sidecar/blob/62f2674/src/index.ts#L9)*
 
 **Returns:** Promise\<void>
