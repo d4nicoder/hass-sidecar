@@ -258,7 +258,7 @@ class API {
    * @memberof API
    */
   private async _bootstrap (): Promise<void> {
-    const automationsDir: string = path.resolve(path.join(__dirname, 'automations'))
+    const automationsDir: string = path.resolve(path.join(__dirname, '..', 'automations'))
     // Watch for changes
     const watcher = chokidar.watch(`${automationsDir}/**/**`)
     watcher.on('change', (filename) => {
@@ -270,7 +270,8 @@ class API {
     watcher.on('unlink', (filename) => {
       this._modifiedFile('remove', filename)
     })
-
+    
+    /*
     // Load all automations
     let automations
     try {
@@ -289,6 +290,7 @@ class API {
         Logger.error(e)
       }
     }
+    */
   }
 
   /**
