@@ -1,30 +1,39 @@
+jest.mock('fs');
+
 const findAutomations = require('../src/lib/findAutomations').default
-const path = require('path')
 
 describe('Find automations system', () => {
-  test('should return 2 files', () => {
-    return findAutomations(path.resolve(path.join(__dirname, 'sampleFolder')), {
+  test('Filter ts with no recursive returns 3', () => {
+    return findAutomations('sample', {
       recursive: false,
       filter: (file) => /\.ts$/.test(file)
     }).then(data => {
-      expect(data.length).toBe(2)
+      expect(data.length).toBe(3)
     })
   });
 
-  test('should return 3 files', () => {
-    return findAutomations(path.resolve(path.join(__dirname, 'sampleFolder')), {
+  test('Filter ts with recursion returns 4', () => {
+    return findAutomations('sample', {
       recursive: true,
       filter: (file) => /\.ts$/.test(file)
     }).then(data => {
-      expect(data.length).toBe(3)
+      expect(data.length).toBe(4)
     })
   });
 
-  test('should return 3 files', () => {
-    return findAutomations(path.resolve(path.join(__dirname, 'sampleFolder')), {
+  test('No filter without recursion returns 4', () => {
+    return findAutomations('sample', {
       recursive: false
     }).then(data => {
-      expect(data.length).toBe(3)
+      expect(data.length).toBe(4)
+    })
+  });
+
+  test('No filter with recursion returns 5', () => {
+    return findAutomations('sample', {
+      recursive: true
+    }).then(data => {
+      expect(data.length).toBe(5)
     })
   });
 })
