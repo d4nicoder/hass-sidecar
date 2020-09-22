@@ -1,18 +1,19 @@
 import fs from 'fs'
 import path from 'path'
+import Logger from './Logger'
 
 type IOptions = {
   filter?: (file: string) => Promise<boolean> | boolean
   recursive?: boolean
 }
 
-const findAutomations = async (dir: string, options?: IOptions): Promise<string[]> => { 
+const findAutomations = async (dir: string, options?: IOptions): Promise<string[]> => {
   if (!options) {
     options = {
       recursive: false
     }
   }
-  
+
   let files: string[] = []
   // Check is a dir
   try {
@@ -21,7 +22,7 @@ const findAutomations = async (dir: string, options?: IOptions): Promise<string[
       return []
     }
   } catch (e) {
-    console.error(e)
+    Logger.error(e)
     return []
   }
 
@@ -30,12 +31,12 @@ const findAutomations = async (dir: string, options?: IOptions): Promise<string[
   try {
     content = await fs.promises.readdir(dir)
   } catch (e) {
-    console.error(e)
+    Logger.error(e)
     return []
   }
 
   for (const file of content) {
-    const filePath = path.join(dir, file)   
+    const filePath = path.join(dir, file)
 
     try {
       const stat = await fs.promises.stat(filePath)
@@ -49,7 +50,7 @@ const findAutomations = async (dir: string, options?: IOptions): Promise<string[
               files.push(filePath)
             }
           } catch (e) {
-            console.error(e)
+            Logger.error(e)
             continue
           }
         } else {
@@ -59,7 +60,7 @@ const findAutomations = async (dir: string, options?: IOptions): Promise<string[
         continue
       }
     } catch (e) {
-      console.error(e)
+      Logger.error(e)
       continue
     }
     // Recusrive iteration
@@ -67,12 +68,12 @@ const findAutomations = async (dir: string, options?: IOptions): Promise<string[
       const founded = await findAutomations(filePath, options)
       files = files.concat(founded)
     } catch (e) {
-      console.error(e)
+      Logger.error(e)
       continue
     }
- }
+  }
 
-  
+
   return files.sort()
 }
 

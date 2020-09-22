@@ -26,7 +26,7 @@ class MQTT {
    *
    * @return  {MQTT}  Instance
    */
-  constructor () {
+  constructor() {
     const uri = process.env.MQTT_URI || ''
     const options = {
       reconnectPeriod: 5000,
@@ -51,7 +51,7 @@ class MQTT {
    *
    * @return  {[type]}           [return description]
    */
-  private handleMessage (topic: string, message: any, packet: any) {
+  private handleMessage(topic: string, message: any, packet: any) {
     if (this.subscriptions.has(topic)) {
       const subs = this.subscriptions.get(topic)
       if (subs) {
@@ -118,9 +118,9 @@ class MQTT {
       this.subscriptions.set(topic, subs)
     } else {
       // There are not previous subscriptions.
-      this.subscriptions.set(topic, [{callback, id}])
+      this.subscriptions.set(topic, [{ callback, id }])
     }
-    return {topic, id}
+    return { topic, id }
   }
 
   /**
