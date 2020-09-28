@@ -248,34 +248,50 @@ class WebsocketConnection {
 
     // If this message is a response o a previous call...
     if (json.id && this._promises.has(json.id) && json.type === 'result') {
-      const promise = this._promises.get(json.id)
-
-      if (promise) {
-        const { resolve, reject } = promise
-
-        if (json.success) {
-          try {
-            resolve(json.result)
-          } catch (e) {
-            Logger.error(e)
-          }
-        } else {
-          try {
-            reject(json)
-          } catch (e) {
-            Logger.error(e)
-          }
-        }
+      try {
+        this._responsePromise(json)
+      } catch (e) {
+        Logger.error(e)
       }
     } else if (json.id && this._eventSubscribers.has(json.id)) {  // If is a event that has subscribers...
-      const callback = this._eventSubscribers.get(json.id)
+      try {
+        this._reponseEvent(json)
+      } catch (e) {
+        Logger.error(e)
+      }
+    }
+  }
 
-      if (callback) {
+  private _responsePromise(data: any): void {
+    const promise = this._promises.get(data.id)
+
+    if (promise) {
+      const { resolve, reject } = promise
+
+      if (data.success) {
         try {
-          callback(json.event)
+          resolve(data.result)
         } catch (e) {
           Logger.error(e)
         }
+      } else {
+        try {
+          reject(data)
+        } catch (e) {
+          Logger.error(e)
+        }
+      }
+    }
+  }
+
+  private _reponseEvent(data: any): void {
+    const callback = this._eventSubscribers.get(data.id)
+
+    if (callback) {
+      try {
+        callback(data.event)
+      } catch (e) {
+        Logger.error(e)
       }
     }
   }

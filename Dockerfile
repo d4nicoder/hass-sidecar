@@ -1,6 +1,6 @@
 FROM node:14.10-alpine
 
-RUN apk update && apk add ffmpeg
+RUN apk add --no-cache ffmpeg
 RUN mkdir /opt/app
 COPY . /opt/app
 WORKDIR /opt/app

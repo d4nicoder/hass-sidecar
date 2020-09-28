@@ -17,7 +17,7 @@ class API {
   private _automations: Map<string, Automation> = new Map()
   private _connection: websocketConnection
   private _states: Map<string, IState> = new Map()
-  private _stateListeners: Map<string, {id: number, callback:IStateCallback}[]> = new Map()
+  private _stateListeners: Map<string, { id: number, callback: IStateCallback }[]> = new Map()
 
   private static _instance: API
 
@@ -90,7 +90,7 @@ class API {
 
     // Store this callback to the _stateListeners map
     if (!this._stateListeners.has(entityId)) {
-      this._stateListeners.set(entityId, [{id, callback}])
+      this._stateListeners.set(entityId, [{ id, callback }])
     } else {
       const listeners = this._stateListeners.get(entityId)
       if (listeners) {
@@ -158,7 +158,7 @@ class API {
 
       // Merging options
       if (data && data !== {}) {
-        options = {...options, ...data}
+        options = { ...options, ...data }
       }
 
       // Some services don't require an entity_id
@@ -257,7 +257,7 @@ class API {
    * @returns {Promise<void>}
    * @memberof API
    */
-  private async _bootstrap (): Promise<void> {
+  private async _bootstrap(): Promise<void> {
     const automationsDir: string = path.resolve(path.join(__dirname, '..', 'automations'))
     // Watch for changes
     const watcher = chokidar.watch(`${automationsDir}/**/**`)
@@ -270,27 +270,6 @@ class API {
     watcher.on('unlink', (filename) => {
       this._modifiedFile('remove', filename)
     })
-    
-    /*
-    // Load all automations
-    let automations
-    try {
-      automations = await findAutomations(path.resolve(path.join(__dirname, '..', 'automations')), {recursive: true, filter: (file) => /\.ts$/.test(file) && !/\/\.?lib\//.test(file)})
-    } catch (e) {
-      console.error(e)
-    }
-    
-    if (!automations || !Array.isArray(automations)) {
-      return
-    }
-    for (const automation of automations) {
-      try {
-        this._loadAutomation(automation)
-      } catch (e) {
-        Logger.error(e)
-      }
-    }
-    */
   }
 
   /**
@@ -325,7 +304,7 @@ class API {
     }
   }
 
-  private _loadAutomation (filename: string) {
+  private _loadAutomation(filename: string) {
     try {
       const newC = require(filename)
       this._automations.set(filename, new newC())
