@@ -12,6 +12,12 @@ type IQueue = {
   callback: () => Promise<void> | void
 }
 
+type IEachMinute = {
+  id: string,
+  callback: IPromiseCallback<void>
+}
+
+type IPromiseCallback<T> = () => Promise<T>
 type ICallback = () => void
 
 /**
@@ -26,8 +32,14 @@ type ICallback = () => void
  */
 abstract class Automation {
 
+  // Timeout and intervals
   private _timeouts: NodeJS.Timeout[] = []
   private _intervals: NodeJS.Timeout[] = []
+
+  // Each minute callbacks
+  private _eachMinutes: IEachMinute[] = []
+  private _lastMinute: number = new Date().getMinutes()
+
   private _mqttSubscriptions: Map<string, number> = new Map()
   private _stateSubscriptions: {id: number, entityId: string}[] = []
   private _queue: IQueue[] = []
@@ -59,6 +71,10 @@ abstract class Automation {
       this._checkQueue()
         .catch(Logger.error)
     }, 1000)
+
+    this.setInterval(() => {
+      this._checkEachMinute()
+    }, 500)
   }
 
   /**
@@ -154,6 +170,33 @@ abstract class Automation {
   }
 
   /**
+   * Set each minute callback
+   *
+   * @param   {IPromiseCallback<void>}  callback  Promise callback
+   *
+   * @return  {<string>}                          Return id of the interval
+   */
+  protected setEachMinute(callback: IPromiseCallback<void>): string {
+    const id = `${Date.now()}-${Math.floor(Math.random() * 1000)}`
+    this._eachMinutes.push({
+      id,
+      callback
+    })
+    return id
+  }
+
+  /**
+   * Clear each minute callback by id
+   *
+   * @param   {string}  id  Callback id
+   *
+   * @return  {void}      void
+   */
+  protected clearEachMinute(id: string) {
+    this._eachMinutes = this._eachMinutes.filter((item) => item.id !== id)
+  }
+
+  /**
    * Check if any queue have to be execute at this time
    *
    * @private
@@ -172,6 +215,24 @@ abstract class Automation {
     }
 
     this._queue = this._queue.filter((q) => now < q.date)
+  }
+
+  /**
+   * Verify if minute has changed and fires callbacks
+   *
+   * @return  {void}  Void
+   */
+  private _checkEachMinute() {
+    const current = new Date().getMinutes()
+    if (current === this._lastMinute) {
+      return
+    }
+
+    this._lastMinute = current
+
+    for (const item of this._eachMinutes) {
+      item.callback().catch(Logger.error)
+    }
   }
 
   /**
@@ -371,6 +432,10 @@ abstract class Automation {
         Logger.error(e)
       }
     }
+
+    // Destroy each minutes callbacks
+    this._eachMinutes = []
+
     Logger.log(`Destroyed ${this.title}`)
   }
 }
