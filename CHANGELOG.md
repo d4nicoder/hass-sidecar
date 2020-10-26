@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-10-26
+
+### Fixed
+ - Changed lib to ES2015 on tsconfig.json
+ - Included @types/node as dev dependencies
+
 ## [0.3.3] - 2019-09-21
 
 ### Fixed

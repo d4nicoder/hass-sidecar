@@ -1,6 +1,6 @@
 {
   "name": "hass-sidecar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,6 @@
     "@types/dotenv": "^8.2.0",
     "@types/moment": "^2.13.0",
     "@types/mqtt": "^2.5.0",
-    "@types/node": "^14.6.0",
     "@types/ws": "^7.2.6",
     "chokidar": "^3.4.2",
     "dotenv": "^8.2.0",
@@ -29,5 +28,8 @@
     "typedoc-plugin-markdown": "^3.0.0",
     "typescript": "^3.9.7",
     "websockets": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.3"
   }
 }
