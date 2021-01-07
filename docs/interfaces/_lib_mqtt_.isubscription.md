@@ -21,7 +21,7 @@
 
 •  **callback**: [ISubscriptionCallback](../modules/_lib_mqtt_.md#isubscriptioncallback)
 
-*Defined in [lib/mqtt.ts:7](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L7)*
+*Defined in [lib/mqtt.ts:7](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L7)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 •  **id**: number
 
-*Defined in [lib/mqtt.ts:6](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L6)*
+*Defined in [lib/mqtt.ts:6](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L6)*

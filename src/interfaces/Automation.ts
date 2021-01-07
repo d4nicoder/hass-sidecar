@@ -248,6 +248,16 @@ abstract class Automation {
   }
 
   /**
+   * Search for entities
+   * @param {RegExp} exp
+   * @protected
+   * @memberof Automation
+   */
+  protected async searchEntities(exp: RegExp | string) {
+    return this._api.searchEntities(exp)
+  }
+
+  /**
    * Call service
    *
    * @protected

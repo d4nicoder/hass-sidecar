@@ -20,4 +20,4 @@
 
 Ƭ  **IStateCallback**: (newState: [IState](../interfaces/_interfaces_istate_.istate.md),oldState: [IState](../interfaces/_interfaces_istate_.istate.md) \| null) => void
 
-*Defined in [interfaces/IState.ts:14](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/interfaces/IState.ts#L14)*
+*Defined in [interfaces/IState.ts:14](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/interfaces/IState.ts#L14)*

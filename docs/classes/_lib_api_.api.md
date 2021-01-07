@@ -36,6 +36,7 @@ Class to manage all interactions with the backend
 * [clearOnState](_lib_api_.api.md#clearonstate)
 * [getState](_lib_api_.api.md#getstate)
 * [onState](_lib_api_.api.md#onstate)
+* [searchEntities](_lib_api_.api.md#searchentities)
 * [getInstance](_lib_api_.api.md#getinstance)
 
 ## Constructors
@@ -44,7 +45,7 @@ Class to manage all interactions with the backend
 
 \+ **new API**(): [API](_lib_api_.api.md)
 
-*Defined in [lib/API.ts:22](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L22)*
+*Defined in [lib/API.ts:22](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L22)*
 
 Creates an instance of API.
 
@@ -58,7 +59,7 @@ Creates an instance of API.
 
 • `Private` **\_automations**: Map\<string, [Automation](_interfaces_automation_.automation.md)> = new Map()
 
-*Defined in [lib/API.ts:17](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L17)*
+*Defined in [lib/API.ts:17](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L17)*
 
 ___
 
@@ -66,7 +67,7 @@ ___
 
 • `Private` **\_connection**: websocketConnection
 
-*Defined in [lib/API.ts:18](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L18)*
+*Defined in [lib/API.ts:18](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L18)*
 
 ___
 
@@ -74,7 +75,7 @@ ___
 
 • `Private` **\_stateListeners**: Map\<string, { callback: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback) ; id: number  }[]> = new Map()
 
-*Defined in [lib/API.ts:20](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L20)*
+*Defined in [lib/API.ts:20](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L20)*
 
 ___
 
@@ -82,7 +83,7 @@ ___
 
 • `Private` **\_states**: Map\<string, [IState](../interfaces/_interfaces_istate_.istate.md)> = new Map()
 
-*Defined in [lib/API.ts:19](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L19)*
+*Defined in [lib/API.ts:19](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L19)*
 
 ___
 
@@ -90,7 +91,7 @@ ___
 
 ▪ `Static` `Private` **\_instance**: [API](_lib_api_.api.md)
 
-*Defined in [lib/API.ts:22](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L22)*
+*Defined in [lib/API.ts:22](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L22)*
 
 ## Methods
 
@@ -98,7 +99,7 @@ ___
 
 ▸ `Private`**_bootstrap**(): Promise\<void>
 
-*Defined in [lib/API.ts:260](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L260)*
+*Defined in [lib/API.ts:277](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L277)*
 
 Load all automations and watch for changes
 When automation file changes, it will be unloaded
@@ -114,7 +115,7 @@ ___
 
 ▸ `Private`**_loadAutomation**(`filename`: string): void
 
-*Defined in [lib/API.ts:326](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L326)*
+*Defined in [lib/API.ts:324](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L324)*
 
 #### Parameters:
 
@@ -130,7 +131,7 @@ ___
 
 ▸ `Private`**_modifiedFile**(`ev`: string, `filename`: string): void
 
-*Defined in [lib/API.ts:304](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L304)*
+*Defined in [lib/API.ts:302](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L302)*
 
 Handle modified automation file
 If automation has previously loaded, unloads it an reloads.
@@ -153,7 +154,7 @@ ___
 
 ▸ `Private`**_onStateChange**(): void
 
-*Defined in [lib/API.ts:223](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L223)*
+*Defined in [lib/API.ts:240](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L240)*
 
 Initiates subscription to all states changes.
 Logs any change to the console, stores the new state in the states map
@@ -169,7 +170,7 @@ ___
 
 ▸ `Private`**_syncStates**(): Promise\<void>
 
-*Defined in [lib/API.ts:192](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L192)*
+*Defined in [lib/API.ts:209](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L209)*
 
 Get all states and stores their values in the map
 
@@ -183,7 +184,7 @@ ___
 
 ▸ `Private`**_unload**(): void
 
-*Defined in [lib/API.ts:341](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L341)*
+*Defined in [lib/API.ts:339](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L339)*
 
 Unloads automation class
 
@@ -197,7 +198,7 @@ ___
 
 ▸ **callService**(`domain`: string, `service`: string, `entityId`: string \| null, `data`: any): Promise\<any>
 
-*Defined in [lib/API.ts:153](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L153)*
+*Defined in [lib/API.ts:170](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L170)*
 
 Call a Home Assistant service
 
@@ -220,7 +221,7 @@ ___
 
 ▸ **clearOnState**(`entityId`: string, `id`: number): void
 
-*Defined in [lib/API.ts:114](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L114)*
+*Defined in [lib/API.ts:114](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L114)*
 
 Unsubscribe from state change.
 
@@ -241,7 +242,7 @@ ___
 
 ▸ **getState**(`entityId`: string): Promise\<[IState](../interfaces/_interfaces_istate_.istate.md)>
 
-*Defined in [lib/API.ts:135](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L135)*
+*Defined in [lib/API.ts:135](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L135)*
 
 Get current state of one entity
 
@@ -261,7 +262,7 @@ ___
 
 ▸ **onState**(`entityId`: string, `callback`: [IStateCallback](../modules/_interfaces_istate_.md#istatecallback)): object
 
-*Defined in [lib/API.ts:84](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L84)*
+*Defined in [lib/API.ts:84](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L84)*
 
 Subscribe to state changes on entity
 
@@ -283,11 +284,29 @@ Name | Type |
 
 ___
 
+### searchEntities
+
+▸ **searchEntities**(`filter`: RegExp \| string): Promise\<[IState](../interfaces/_interfaces_istate_.istate.md)[]>
+
+*Defined in [lib/API.ts:148](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L148)*
+
+Search entities based on a RegExp or string
+
+#### Parameters:
+
+Name | Type | Description |
+------ | ------ | ------ |
+`filter` | RegExp \| string | String or RegExp to search for |
+
+**Returns:** Promise\<[IState](../interfaces/_interfaces_istate_.istate.md)[]>
+
+___
+
 ### getInstance
 
 ▸ `Static`**getInstance**(): [API](_lib_api_.api.md)
 
-*Defined in [lib/API.ts:68](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/API.ts#L68)*
+*Defined in [lib/API.ts:68](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/API.ts#L68)*
 
 Singleton
 

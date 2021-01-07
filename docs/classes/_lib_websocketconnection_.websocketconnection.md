@@ -31,6 +31,8 @@ Class to manage the websocket connection with Home Assistant
 
 * [\_createConnection](_lib_websocketconnection_.websocketconnection.md#_createconnection)
 * [\_handleMessages](_lib_websocketconnection_.websocketconnection.md#_handlemessages)
+* [\_reponseEvent](_lib_websocketconnection_.websocketconnection.md#_reponseevent)
+* [\_responsePromise](_lib_websocketconnection_.websocketconnection.md#_responsepromise)
 * [addEventListener](_lib_websocketconnection_.websocketconnection.md#addeventlistener)
 * [callService](_lib_websocketconnection_.websocketconnection.md#callservice)
 * [getStates](_lib_websocketconnection_.websocketconnection.md#getstates)
@@ -44,7 +46,7 @@ Class to manage the websocket connection with Home Assistant
 
 \+ **new WebsocketConnection**(`host`: string, `token`: string): [WebsocketConnection](_lib_websocketconnection_.websocketconnection.md)
 
-*Defined in [lib/websocketConnection.ts:19](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L19)*
+*Defined in [lib/websocketConnection.ts:19](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L19)*
 
 Constructor. Initializes the class
 
@@ -63,7 +65,7 @@ Name | Type | Description |
 
 • `Private` **\_conn**: ws
 
-*Defined in [lib/websocketConnection.ts:14](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L14)*
+*Defined in [lib/websocketConnection.ts:14](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L14)*
 
 ___
 
@@ -71,7 +73,7 @@ ___
 
 • `Private` **\_eventSubscribers**: Map\<number, (message: any) => void>
 
-*Defined in [lib/websocketConnection.ts:18](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L18)*
+*Defined in [lib/websocketConnection.ts:18](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L18)*
 
 ___
 
@@ -79,7 +81,7 @@ ___
 
 • `Private` **\_id**: number = 0
 
-*Defined in [lib/websocketConnection.ts:16](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L16)*
+*Defined in [lib/websocketConnection.ts:16](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L16)*
 
 ___
 
@@ -87,7 +89,7 @@ ___
 
 • `Private` **\_listeners**: EventEmitter
 
-*Defined in [lib/websocketConnection.ts:15](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L15)*
+*Defined in [lib/websocketConnection.ts:15](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L15)*
 
 ___
 
@@ -95,7 +97,7 @@ ___
 
 • `Private` **\_onCloseEvents**: [ICloseCallback](../modules/_lib_websocketconnection_.md#iclosecallback)[] = []
 
-*Defined in [lib/websocketConnection.ts:19](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L19)*
+*Defined in [lib/websocketConnection.ts:19](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L19)*
 
 ___
 
@@ -103,7 +105,7 @@ ___
 
 • `Private` **\_promises**: Map\<number, { reject: (error: Error) => void ; resolve: (message: any) => void  }>
 
-*Defined in [lib/websocketConnection.ts:17](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L17)*
+*Defined in [lib/websocketConnection.ts:17](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L17)*
 
 ___
 
@@ -111,7 +113,7 @@ ___
 
 • `Private` **\_token**: string
 
-*Defined in [lib/websocketConnection.ts:13](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L13)*
+*Defined in [lib/websocketConnection.ts:13](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L13)*
 
 ___
 
@@ -119,7 +121,7 @@ ___
 
 • `Private` **\_uri**: string
 
-*Defined in [lib/websocketConnection.ts:12](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L12)*
+*Defined in [lib/websocketConnection.ts:12](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L12)*
 
 ## Methods
 
@@ -127,7 +129,7 @@ ___
 
 ▸ `Private`**_createConnection**(): void
 
-*Defined in [lib/websocketConnection.ts:46](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L46)*
+*Defined in [lib/websocketConnection.ts:46](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L46)*
 
 Creates the websolcket connection and stores it in the _conn property
 
@@ -139,7 +141,7 @@ ___
 
 ▸ `Private`**_handleMessages**(`data`: string): void
 
-*Defined in [lib/websocketConnection.ts:225](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L225)*
+*Defined in [lib/websocketConnection.ts:225](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L225)*
 
 Handles every message from Home Assistant
 
@@ -153,11 +155,43 @@ Name | Type | Description |
 
 ___
 
+### \_reponseEvent
+
+▸ `Private`**_reponseEvent**(`data`: any): void
+
+*Defined in [lib/websocketConnection.ts:287](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L287)*
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`data` | any |
+
+**Returns:** void
+
+___
+
+### \_responsePromise
+
+▸ `Private`**_responsePromise**(`data`: any): void
+
+*Defined in [lib/websocketConnection.ts:265](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L265)*
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`data` | any |
+
+**Returns:** void
+
+___
+
 ### addEventListener
 
 ▸ **addEventListener**(`event`: string, `callback`: (message: any) => void): [WebsocketConnection](_lib_websocketconnection_.websocketconnection.md)
 
-*Defined in [lib/websocketConnection.ts:119](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L119)*
+*Defined in [lib/websocketConnection.ts:119](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L119)*
 
 Subscribe listener to an event
 
@@ -176,7 +210,7 @@ ___
 
 ▸ **callService**(`domain`: string, `service`: string, `attributes`: any): Promise\<unknown>
 
-*Defined in [lib/websocketConnection.ts:191](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L191)*
+*Defined in [lib/websocketConnection.ts:191](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L191)*
 
 Call a Home Assistant sercive
 
@@ -196,7 +230,7 @@ ___
 
 ▸ **getStates**(): Promise\<[IState](../interfaces/_interfaces_istate_.istate.md)[]>
 
-*Defined in [lib/websocketConnection.ts:143](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L143)*
+*Defined in [lib/websocketConnection.ts:143](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L143)*
 
 Get all entities states
 Tells to Home Assistant to send all the states updated
@@ -209,7 +243,7 @@ ___
 
 ▸ **onClose**(`callback`: [ICloseCallback](../modules/_lib_websocketconnection_.md#iclosecallback)): [WebsocketConnection](_lib_websocketconnection_.websocketconnection.md)
 
-*Defined in [lib/websocketConnection.ts:213](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L213)*
+*Defined in [lib/websocketConnection.ts:213](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L213)*
 
 Subscribe to the close connection event
 
@@ -227,7 +261,7 @@ ___
 
 ▸ **removeEventListener**(`event`: string, `callback`: (message: any) => void): [WebsocketConnection](_lib_websocketconnection_.websocketconnection.md)
 
-*Defined in [lib/websocketConnection.ts:132](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L132)*
+*Defined in [lib/websocketConnection.ts:132](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L132)*
 
 Remove listener from event
 
@@ -246,7 +280,7 @@ ___
 
 ▸ **subscribeEvent**(`event`: string, `callback`: (message: any) => void): Promise\<any>
 
-*Defined in [lib/websocketConnection.ts:163](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L163)*
+*Defined in [lib/websocketConnection.ts:163](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L163)*
 
 Subscribe to Home Assistant event
 

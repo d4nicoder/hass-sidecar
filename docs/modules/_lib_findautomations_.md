@@ -20,7 +20,7 @@
 
 Ƭ  **IOptions**: { filter?: undefined \| (file: string) => Promise\<boolean> \| boolean ; recursive?: undefined \| false \| true  }
 
-*Defined in [lib/findAutomations.ts:4](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/findAutomations.ts#L4)*
+*Defined in [lib/findAutomations.ts:5](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/findAutomations.ts#L5)*
 
 #### Type declaration:
 
@@ -35,7 +35,7 @@ Name | Type |
 
 ▸ `Const`**findAutomations**(`dir`: string, `options?`: [IOptions](_lib_findautomations_.md#ioptions)): Promise\<string[]>
 
-*Defined in [lib/findAutomations.ts:9](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/findAutomations.ts#L9)*
+*Defined in [lib/findAutomations.ts:10](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/findAutomations.ts#L10)*
 
 #### Parameters:
 

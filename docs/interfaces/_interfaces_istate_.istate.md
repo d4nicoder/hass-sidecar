@@ -25,7 +25,7 @@
 
 •  **attributes**: any
 
-*Defined in [interfaces/IState.ts:4](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/interfaces/IState.ts#L4)*
+*Defined in [interfaces/IState.ts:4](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/interfaces/IState.ts#L4)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 •  **context**: { id: string ; parent_id: string ; user_id: string  }
 
-*Defined in [interfaces/IState.ts:7](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/interfaces/IState.ts#L7)*
+*Defined in [interfaces/IState.ts:7](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/interfaces/IState.ts#L7)*
 
 #### Type declaration:
 
@@ -49,7 +49,7 @@ ___
 
 •  **entity\_id**: string
 
-*Defined in [interfaces/IState.ts:2](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/interfaces/IState.ts#L2)*
+*Defined in [interfaces/IState.ts:2](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/interfaces/IState.ts#L2)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 •  **last\_changed**: Date
 
-*Defined in [interfaces/IState.ts:5](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/interfaces/IState.ts#L5)*
+*Defined in [interfaces/IState.ts:5](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/interfaces/IState.ts#L5)*
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 •  **last\_updated**: Date
 
-*Defined in [interfaces/IState.ts:6](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/interfaces/IState.ts#L6)*
+*Defined in [interfaces/IState.ts:6](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/interfaces/IState.ts#L6)*
 
 ___
 
@@ -73,4 +73,4 @@ ___
 
 •  **state**: string
 
-*Defined in [interfaces/IState.ts:3](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/interfaces/IState.ts#L3)*
+*Defined in [interfaces/IState.ts:3](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/interfaces/IState.ts#L3)*

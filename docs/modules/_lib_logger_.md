@@ -24,7 +24,7 @@
 
 Ƭ  **IColor**: \"red\" \| \"green\" \| \"blue\" \| \"yellow\" \| \"white\"
 
-*Defined in [lib/Logger.ts:3](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/Logger.ts#L3)*
+*Defined in [lib/Logger.ts:3](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/Logger.ts#L3)*
 
 ## Functions
 
@@ -32,7 +32,7 @@
 
 ▸ `Const`**log**(`color`: [IColor](_lib_logger_.md#icolor), `text`: any): void
 
-*Defined in [lib/Logger.ts:5](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/Logger.ts#L5)*
+*Defined in [lib/Logger.ts:5](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/Logger.ts#L5)*
 
 #### Parameters:
 

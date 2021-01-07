@@ -16,7 +16,7 @@
 
 ▸ `Const`**init**(): Promise\<void>
 
-*Defined in [index.ts:13](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/index.ts#L13)*
+*Defined in [index.ts:13](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/index.ts#L13)*
 
 Bootstrap application
 

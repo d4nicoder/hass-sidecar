@@ -141,6 +141,23 @@ class API {
   }
 
   /**
+   * Search entities based on a RegExp or string
+   * @param filter String or RegExp to search for
+   * @returns IState[] Array of states
+   */
+  public async searchEntities(filter: RegExp | string): Promise<IState[]> {
+    const states: IState[] = []
+    const exp = typeof filter === 'string' ? new RegExp(filter) : filter
+
+    this._states.forEach((ent) => {
+      if (exp.test(ent.entity_id)) {
+        states.push(ent)
+      }
+    })
+    return states
+  }
+
+  /**
    * Call a Home Assistant service
    *
    * @param {string} domain              Domain, for example: light

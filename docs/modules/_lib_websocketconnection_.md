@@ -20,4 +20,4 @@
 
 Ƭ  **ICloseCallback**: () => void
 
-*Defined in [lib/websocketConnection.ts:6](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/websocketConnection.ts#L6)*
+*Defined in [lib/websocketConnection.ts:6](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/websocketConnection.ts#L6)*

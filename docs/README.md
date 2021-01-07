@@ -2,6 +2,8 @@
 
 README / [Globals](globals.md)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/danitetus/hass-sidecar/badge)](https://www.codefactor.io/repository/github/danitetus/hass-sidecar)
+
 # Home assistant sidecar
 
 ## Description

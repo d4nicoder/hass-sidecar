@@ -36,7 +36,7 @@ Manage the MQTT connection with the server
 
 \+ **new MQTT**(): [MQTT](_lib_mqtt_.mqtt.md)
 
-*Defined in [lib/mqtt.ts:22](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L22)*
+*Defined in [lib/mqtt.ts:22](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L22)*
 
 Initialize the connection
 
@@ -48,7 +48,7 @@ Initialize the connection
 
 • `Private` **client**: mqtt.Client
 
-*Defined in [lib/mqtt.ts:20](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L20)*
+*Defined in [lib/mqtt.ts:20](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L20)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • `Private` **subscriptions**: Map\<string, [ISubscription](../interfaces/_lib_mqtt_.isubscription.md)[]> = new Map()
 
-*Defined in [lib/mqtt.ts:21](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L21)*
+*Defined in [lib/mqtt.ts:21](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L21)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 ▪ `Static` **instance**: [MQTT](_lib_mqtt_.mqtt.md)
 
-*Defined in [lib/mqtt.ts:22](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L22)*
+*Defined in [lib/mqtt.ts:22](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L22)*
 
 ## Methods
 
@@ -72,7 +72,7 @@ ___
 
 ▸ `Private`**handleMessage**(`topic`: string, `message`: any, `packet`: any): void
 
-*Defined in [lib/mqtt.ts:54](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L54)*
+*Defined in [lib/mqtt.ts:54](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L54)*
 
 Handle mqtt received message.
 Checks if has any subscription to this topic an invoke callback functions
@@ -93,7 +93,7 @@ ___
 
 ▸ **publish**(`topic`: string, `payload`: string, `options?`: mqtt.IClientPublishOptions): void
 
-*Defined in [lib/mqtt.ts:134](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L134)*
+*Defined in [lib/mqtt.ts:134](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L134)*
 
 Publish message into topic
 
@@ -115,7 +115,7 @@ ___
 
 ▸ **subscribe**(`topic`: string, `options`: IClientSubscribeOptions, `callback`: [ISubscriptionCallback](../modules/_lib_mqtt_.md#isubscriptioncallback)): [INewSubscription](../interfaces/_lib_mqtt_.inewsubscription.md)
 
-*Defined in [lib/mqtt.ts:92](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L92)*
+*Defined in [lib/mqtt.ts:92](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L92)*
 
 Subscribe to topic
 
@@ -135,7 +135,7 @@ ___
 
 ▸ **unsubscribe**(`topic`: string, `id`: number): void
 
-*Defined in [lib/mqtt.ts:146](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L146)*
+*Defined in [lib/mqtt.ts:146](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L146)*
 
 Unsubscribe to topic
 
@@ -156,7 +156,7 @@ ___
 
 ▸ `Static`**getInstance**(): [MQTT](_lib_mqtt_.mqtt.md)
 
-*Defined in [lib/mqtt.ts:74](https://github.com/danitetus/hass-sidecar/blob/b9c468b/src/lib/mqtt.ts#L74)*
+*Defined in [lib/mqtt.ts:74](https://github.com/danitetus/hass-sidecar/blob/b82a103/src/lib/mqtt.ts#L74)*
 
 Singleton
 
