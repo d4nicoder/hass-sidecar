@@ -22,7 +22,7 @@ For detailed information about clases and methods, go to [docs/globals.md](docs/
 
 ```bash
 # Clone the repo
-git clone git@github.com:danitetus/hass-sidecar
+git clone git@github.com:d4nicoder/hass-sidecar
 # Change directory
 cd hass-sidecar
 # Install dependencies
